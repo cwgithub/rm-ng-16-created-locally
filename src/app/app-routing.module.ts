@@ -15,8 +15,7 @@ const routes: Routes = [
         (m) => m.VexflowComponent
       ),
   },
-
-
+  { path: '', redirectTo: '/vexflow', pathMatch: 'full' },
 ];
 
 @NgModule({
