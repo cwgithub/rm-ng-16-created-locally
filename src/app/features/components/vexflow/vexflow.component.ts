@@ -8,6 +8,8 @@ import { Formatter } from 'vexflow';
 import { Renderer } from 'vexflow';
 import { Stave } from 'vexflow';
 import { Voice } from 'vexflow';
+import { Accidental } from 'vexflow';
+import { Dot } from 'vexflow';
 
 @Component({
   selector: 'app-vexflow',
@@ -32,7 +34,8 @@ export class VexflowComponent implements OnInit {
   tutorial() {
     this.tutorialBoilerplate();
     this.tutorialStep1();
-    this.tutorialStep2();
+    // this.tutorialStep2();
+    this.tutorialStep3();
   }
 
   easyScore() {
@@ -126,5 +129,53 @@ export class VexflowComponent implements OnInit {
 
     // Render voice
     voice.draw(this.context, this.stave);
+  }
+
+  tutorialStep3() {
+    const notes = [
+      dotted(
+        new StaveNote({
+          keys: ['e##/5'],
+          duration: '8d',
+        }).addModifier(new Accidental('##'))
+      ),
+
+      new StaveNote({
+        keys: ['eb/5'],
+        duration: '16',
+      }).addModifier(new Accidental('b')),
+
+      dotted(
+        new StaveNote({
+          keys: ['eb/4', 'd/5'],
+          duration: 'h',
+        }),
+        0 /* add dot to note at index==0 */
+      ),
+
+      dotted(
+        new StaveNote({
+          keys: ['c/5', 'eb/5', 'g#/5'],
+          duration: 'q',
+        })
+          .addModifier(new Accidental('b'), 1)
+          .addModifier(new Accidental('#'), 2)
+      ),
+    ];
+
+    Formatter.FormatAndDraw(this.context, this.stave, notes);
+
+    function dotted(staveNote: StaveNote, noteIndex = -1) {
+      if (noteIndex < 0) {
+        Dot.buildAndAttach([staveNote], {
+          all: true,
+        });
+      } else {
+        Dot.buildAndAttach([staveNote], {
+          index: noteIndex,
+        });
+      }
+      return staveNote;
+    }
   }
 }
