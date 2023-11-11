@@ -1,3 +1,15 @@
-<p>Assessment Works!</p>
+<div *ngFor="let question of assessment.questions">
+  <h3>
+    {{ question.questionNumber }}
+    {{ question.prompt }}
+  </h3>
 
-<img src="assets/assessments/grade5/images/shared/time-sigs/9-8.jpg" />
+  <div *ngFor="let part of question.parts">
+    <h4>{{ part.partRef }}</h4>
+    <img [src]="part.prompt" />
+
+    <div *ngFor="let option of part.options">
+      <img [src]="option" />
+    </div>
+  </div>
+</div>

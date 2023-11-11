@@ -22,7 +22,7 @@ const routes: Routes = [
       ),
   },
 
-  { path: '', redirectTo: '/vexflow', pathMatch: 'full' },
+  { path: '', redirectTo: '/assessment', pathMatch: 'full' },
 ];
 
 @NgModule({
