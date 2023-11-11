@@ -16,8 +16,7 @@ export class AssessmentComponent {
   static AssessmentFileName = 'assessment.json';
 
   assessment?: any;
-
-  optionGroup?: string;
+  optionGroup: string[] = ['', '', ''];
 
   private _assessmentName = 'grade5';
 
