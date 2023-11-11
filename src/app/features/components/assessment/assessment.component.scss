@@ -1,0 +1,49 @@
+@mixin border-thing {
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: black;
+  border-style: dashed;
+}
+
+.parts-row {
+  // @include border-thing;
+  // float: left;
+}
+
+.question-container {
+  // @include border-thing;
+  margin: 10px;
+  width: 1000px;
+  display: inline;
+  float: left;
+}
+
+.part-ref {
+  // @include border-thing;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  min-height: 100px;
+  width: 100px;
+  float: left;
+}
+
+.part-prompt {
+  // @include border-thing;
+  font-size: 20px;
+}
+
+.options-row {
+  // @include border-thing;
+  // background-color: lightblue;
+  min-height: 100px;
+  // display: grid;
+}
+
+.part-option {
+  @include border-thing;
+  // background: bisque;
+  min-height: 100px;
+  min-width: 100px;
+  float: inline-end;
+}
