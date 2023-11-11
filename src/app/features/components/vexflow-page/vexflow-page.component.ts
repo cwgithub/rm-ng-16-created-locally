@@ -13,12 +13,14 @@ import { Dot } from 'vexflow';
 import { Beam } from 'vexflow';
 
 @Component({
-  selector: 'app-vexflow',
+  selector: 'app-vexflow-page',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './vexflow.component.html',
-  styleUrls: ['./vexflow.component.scss'],
+  templateUrl: './vexflow-page.component.html',
+  styleUrls: ['./vexflow-page.component.scss'],
 })
+export class VexflowPageComponent {}
+
 export class VexflowComponent implements OnInit {
   public VF: any;
 
@@ -92,12 +94,13 @@ export class VexflowComponent implements OnInit {
       // Configure the rendering context.
       this.renderer.resize(500, 150);
       this.context = this.renderer.getContext();
-      // Create a stave of width 400 at position 10, 40 on the canvas.
-      this.stave = new Stave(10, 40, 400);
     }
   }
 
   tutorialStep1() {
+    // Create a stave of width 400 at position 10, 40 on the canvas.
+    this.stave = new Stave(10, 40, 400);
+
     // Add a clef and time signature.
     this.stave.addClef('treble').addTimeSignature('4/4');
 
@@ -132,6 +135,7 @@ export class VexflowComponent implements OnInit {
     // Render voice
     voice.draw(this.context, this.stave);
   }
+
   tutorialStep3() {
     const notes = [
       dotted(
@@ -179,6 +183,7 @@ export class VexflowComponent implements OnInit {
       return staveNote;
     }
   }
+
   tutorialStep4() {
     // Create an SVG renderer and attach it to the DIV element named "boo".
     const div = document.getElementById('tutorial-step-4') as HTMLDivElement;
@@ -274,6 +279,7 @@ export class VexflowComponent implements OnInit {
       return staveNote;
     }
   }
+
   tutorialStep5() {
     // Create an SVG renderer and attach it to the DIV element named "boo".
     const div = document.getElementById('tutorial-step-5') as HTMLDivElement;

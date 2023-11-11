@@ -7,7 +7,13 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-
+  {
+    path: 'assessment',
+    loadComponent: () =>
+      import('./features/components/assessment/assessment.component').then(
+        (m) => m.AssessmentComponent
+      ),
+  },
   {
     path: 'vexflow',
     loadComponent: () =>
@@ -15,6 +21,7 @@ const routes: Routes = [
         (m) => m.VexflowComponent
       ),
   },
+
   { path: '', redirectTo: '/vexflow', pathMatch: 'full' },
 ];
 

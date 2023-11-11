@@ -1,0 +1,42 @@
+{
+  "meta": {},
+  "questions": [
+    {
+      "question-number": 1.1,
+      "type": "multiple-choice",
+      "selection": "radio",
+      "prompt": [
+        "Circle the correct time signature for each of these bars."
+      ],
+      "parts": [
+        {
+          "part-ref": "a",
+          "prompt": "assets/assessments/grade.5/images/questions/1.1.a.jpg",
+          "options": [
+            "assets/assessments/grade.5/images/shared/time-sigs/9-8.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/4-4.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/7-8.jpg"
+          ]
+        },
+        {
+          "part-ref": "b",
+          "prompt": "assets/assessments/grade.5/images/questions/1.1.b.jpg",
+          "options": [
+            "assets/assessments/grade.5/images/shared/time-sigs/5-4.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/9-8.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/4-4.jpg"
+          ]
+        },
+        {
+          "part-ref": "c",
+          "prompt": "assets/assessments/grade.5/images/questions/1.1.c.jpg",
+          "options": [
+            "assets/assessments/grade.5/images/shared/time-sigs/6-8.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/7-8.jpg",
+            "assets/assessments/grade.5/images/shared/time-sigs/5-8.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}

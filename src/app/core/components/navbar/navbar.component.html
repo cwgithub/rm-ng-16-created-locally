@@ -8,7 +8,7 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <span class='push-left-20'>Rm</span>
+    <span class="push-left-20">{{ title }}</span>
 
     <span class="example-spacer"></span>
 
@@ -17,19 +17,28 @@
       routerLink="/home"
       routerLinkActive="active"
       class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
+      aria-label="Home icon-button with house icon"
     >
       <mat-icon>home</mat-icon>
     </button>
 
     <button
       mat-icon-button
+      routerLink="/assessment"
+      routerLinkActive="active"
+      class="example-icon favorite-icon"
+      aria-label="Assessment icon-button with heart icon"
+    >
+      <mat-icon>quiz</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
       routerLink="/vexflow"
-      class="example-icon music_note"
-      aria-label="Example icon-button with share icon"
+      class="example-icon favorite-icon"
+      aria-label="VexFlow tests icon-button with music_note icon"
     >
       <mat-icon>music_note</mat-icon>
     </button>
-
   </mat-toolbar>
 </p>
