@@ -1,15 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 
-
-export type PromptType = "text" | "image";
-
+export type PromptType = 'text' | 'image';
 export type Prompt = [PromptType: string];
-
-
 
 @Component({
   selector: 'app-assessment',
@@ -18,7 +14,7 @@ export type Prompt = [PromptType: string];
   templateUrl: './assessment.component.html',
   styleUrls: ['./assessment.component.scss'],
 })
-export class AssessmentComponent {
+export class AssessmentComponent implements AfterViewInit {
   static AssessmentRootPath = '/assets/assessments';
   static AssessmentFileName = 'assessment.json';
 
@@ -27,9 +23,10 @@ export class AssessmentComponent {
 
   private _assessmentName = 'grade5';
 
-  constructor(private _httpClient: HttpClient) {
-    const fullFileName = `${AssessmentComponent.AssessmentRootPath}\\${this._assessmentName}\\${AssessmentComponent.AssessmentFileName}`;
+  constructor(private _httpClient: HttpClient) {}
 
+  ngAfterViewInit(): void {
+    const fullFileName = `${AssessmentComponent.AssessmentRootPath}\\${this._assessmentName}\\${AssessmentComponent.AssessmentFileName}`;
     this.loadAssessment(fullFileName);
   }
 
