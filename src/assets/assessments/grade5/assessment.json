@@ -1,42 +1,156 @@
 {
   "meta": {},
-  "questions": [
+  "sections": [
     {
-      "questionNumber": 1.1,
-      "type": "multiple-choice",
-      "selection": "radio",
-      "prompt": [
-        "Circle the correct time signature for each of these bars."
-      ],
-      "parts": [
+      "sectionNumber": 1,
+      "sectionName": "Rhythm",
+      "questions": [
         {
-          "partRef": "a",
-          "prompt": "assets/assessments/grade5/images/questions/1.1.a.jpg",
-          "options": [
-            "assets/assessments/grade5/images/shared/time-sigs/9-8.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/4-4.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/7-8.jpg"
+          "questionNumber": 1.1,
+          "type": "multiple-choice",
+          "selection": "radio",
+          "prompt": [
+            [
+              "text",
+              "Circle the correct time signature for each of these bars."
+            ]
+          ],
+          "parts": [
+            {
+              "partRef": "a",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.1.a.jpg"
+              ],
+              "options": [
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/9-8.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/4-4.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/7-8.jpg"
+                ]
+              ]
+            },
+            {
+              "partRef": "b",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.1.b.jpg"
+              ],
+              "options": [
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/5-4.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/9-8.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/4-4.jpg"
+                ]
+              ]
+            },
+            {
+              "partRef": "c",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.1.c.jpg"
+              ],
+              "options": [
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/6-8.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/7-8.jpg"
+                ],
+                [
+                  "image",
+                  "assets/assessments/grade5/images/shared/time-sigs/5-8.jpg"
+                ]
+              ]
+            }
           ]
         },
         {
-          "partRef": "b",
-          "prompt": "assets/assessments/grade5/images/questions/1.1.b.jpg",
-          "options": [
-            "assets/assessments/grade5/images/shared/time-sigs/5-4.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/9-8.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/4-4.jpg"
-          ]
-        },
-        {
-          "partRef": "c",
-          "prompt": "assets/assessments/grade5/images/questions/1.1.c.jpg",
-          "options": [
-            "assets/assessments/grade5/images/shared/time-sigs/6-8.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/7-8.jpg",
-            "assets/assessments/grade5/images/shared/time-sigs/5-8.jpg"
+          "questionNumber": 1,
+          "type": "multiple-choice",
+          "selection": "radio",
+          "prompt": [
+            ["text", "Here is a bar in compound time:."],
+            ["image", "assets/assessments/grade5/images/questions/1.2.jpg"],
+            [
+              "text",
+              "Which of the following shows the bar correctly rewritten in simple time?  Tick (tick mark) one box."
+            ]
+          ],
+          "parts": [
+            {
+              "partRef": "a",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.2.a.jpg"
+              ],
+              "options": []
+            },
+            {
+              "partRef": "b",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.2.b.jpg"
+              ],
+              "options": []
+            },
+            {
+              "partRef": "c",
+              "prompt": [
+                "image",
+                "assets/assessments/grade5/images/questions/1.2.b.jpg"
+              ],
+              "options": []
+            }
           ]
         }
       ]
+    },
+    {
+      "sectionNumber": 2,
+      "sectionName": "Pitch",
+      "questions": []
+    },
+    {
+      "sectionNumber": 3,
+      "sectionName": "Keys and Scales",
+      "questions": []
+    },
+    {
+      "sectionNumber": 4,
+      "sectionName": "Intervals",
+      "questions": []
+    },
+    {
+      "sectionNumber": 5,
+      "sectionName": "Chords",
+      "questions": []
+    },
+    {
+      "sectionNumber": 6,
+      "sectionName": "Terms, Signs and Instruments",
+      "questions": []
+    },
+    {
+      "sectionNumber": 7,
+      "sectionName": "Music in Context",
+      "questions": []
     }
   ]
 }
