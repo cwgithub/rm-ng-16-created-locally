@@ -8,25 +8,26 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'assessment',
+    path: 'assessment-container',
     loadComponent: () =>
-      import('./features/components/assessment/assessment.component').then(
-        (m) => m.AssessmentComponent
-      ),
+      import(
+        './features/assessment/components/assessment-container/assessment-container.component'
+      ).then((m) => m.AssessmentContainerComponent),
   },
   {
     path: 'vexflow',
     loadComponent: () =>
-      import('./features/components/vexflow/vexflow.component').then(
+      import('./features/vexflow/components/vexflow/vexflow.component').then(
         (m) => m.VexflowComponent
       ),
   },
 
-  { path: '', redirectTo: '/assessment', pathMatch: 'full' },
+  { path: '', redirectTo: '/assessment-container', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

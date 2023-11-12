@@ -82,7 +82,7 @@
           ]
         },
         {
-          "questionNumber": 1,
+          "questionNumber": 1.2,
           "type": "multiple-choice",
           "selection": "radio",
           "prompt": [

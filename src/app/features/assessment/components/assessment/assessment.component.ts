@@ -4,6 +4,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 
+
+export type PromptType = "text" | "image";
+
+export type Prompt = [PromptType: string];
+
+
+
 @Component({
   selector: 'app-assessment',
   standalone: true,
@@ -31,5 +38,13 @@ export class AssessmentComponent {
       this.assessment = data;
       return data;
     });
+  }
+
+  isText(prompt: Prompt): boolean {
+    return prompt[0] === 'text';
+  }
+
+  isImage(prompt: Prompt): boolean {
+    return prompt[0] === 'image';
   }
 }

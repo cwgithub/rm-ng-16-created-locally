@@ -1,13 +1,21 @@
-@mixin border-thing {
+@mixin border-thing($bc: "white") {
   border-radius: 10px;
   border-width: 2px;
+  background-color: $bc;
   border-color: black;
   border-style: dashed;
 }
 
-.parts-row {
+// .assessment-container {
+//   @include border-thing(pink);
+// }
+
+.section-container {
   // @include border-thing;
-  // float: left;
+  margin: 10px;
+  width: 1000px;
+  display: inline;
+  float: left;
 }
 
 .question-container {
@@ -18,8 +26,14 @@
   float: left;
 }
 
+// .parts-row {
+//    @include border-thing;
+//   // float: left;
+// }
+
 .part-ref {
   // @include border-thing;
+
   font-size: 24px;
   font-weight: bold;
   text-align: center;
@@ -29,13 +43,12 @@
 }
 
 .part-prompt {
-  // @include border-thing;
   font-size: 20px;
 }
 
 .options-row {
-  // @include border-thing;
-  // background-color: lightblue;
+  // @include border-thing(pink);
+
   min-height: 100px;
   // display: grid;
 }
