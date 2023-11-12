@@ -1,7 +1,7 @@
 <div *ngIf="assessment?.sections">
   <div *ngFor="let section of assessment.sections">
     <div class="section-container">
-      <h2>
+      <h2 *mgIf="section.questions">
         {{ section.sectionNumber }}
         {{ section.sectionName }}
       </h2>
@@ -21,32 +21,49 @@
           <img *ngIf="isImage(prompt)" [src]="prompt[1]" />
         </div>
 
-        <!-- Question -->
-
-        <div class="parts-row" *ngFor="let part of question.parts; index as i">
-          <div class="part-ref">{{ part.partRef }}</div>
-
-          <span class="part-prompt">
-            <img [src]="part.prompt[1]" />
-          </span>
-
-          <span class="options-row">
-            <!-- if we're on a "multiple-multiple-choice" type question then
-               we need to build a local row of radio buttons for this part -->
-            <mat-radio-group
-              *ngIf="question.type === 'multiple-multiple-choice'"
-              class="example-radio-group"
-              [(ngModel)]="optionGroup[i]"
+        <!-- ============================================================== -->
+        <!-- multiple-choice ============================================== -->
+        <!-- ============================================================== -->
+        <ng-container *ngIf="question.type === 'multiple-choice'">
+          <mat-radio-group
+            class="example-radio-group"
+            [(ngModel)]="optionValue"
+          >
+            <div
+              class="parts-row"
+              *ngFor="let part of question.parts; index as i"
             >
-              <div class="part-option" *ngFor="let option of part.options">
-                <mat-radio-button
-                  class="example-radio-button"
-                  [value]="option[1]"
-                >
-                  <img [src]="option[1]" />
-                </mat-radio-button>
-              </div>
-            </mat-radio-group>
+              <div class="part-ref">{{ part.partRef }}</div>
+
+              <span class="part-prompt">
+                <img [src]="part.prompt[1]" />
+              </span>
+
+              <!-- if we're on a "multiple-choice" type question then
+               we just add a radio button here, the radio group is
+               in the surrounding level -->
+              <mat-radio-button
+                class="example-radio-button"
+                [value]="part.prompt[1]"
+              >
+              </mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </ng-container>
+
+        <!-- ============================================================== -->
+        <!-- multiple-multiple-choice ===================================== -->
+        <!-- ============================================================== -->
+        <ng-container *ngIf="question.type === 'multiple-multiple-choice'">
+          <div
+            class="parts-row"
+            *ngFor="let part of question.parts; index as i"
+          >
+            <div class="part-ref">{{ part.partRef }}</div>
+
+            <span class="part-prompt">
+              <img [src]="part.prompt[1]" />
+            </span>
 
             <!-- if we're on a "multiple-choice" type question then
                we just add a radio button here, the radio group is
@@ -57,8 +74,27 @@
             >
               Default
             </mat-radio-button>
-          </span>
-        </div>
+
+            <span class="options-row">
+              <!-- if we're on a "multiple-multiple-choice" type question then
+               we need to build a local row of radio buttons for this part -->
+              <mat-radio-group
+                class="example-radio-group"
+                [(ngModel)]="optionGroup[i]"
+              >
+                <div class="part-option" *ngFor="let option of part.options">
+                  <mat-radio-button
+                    class="example-radio-button"
+                    [value]="option[1]"
+                  >
+                    <img [src]="option[1]" />
+                  </mat-radio-button>
+                </div>
+              </mat-radio-group>
+            </span>
+          </div>
+        </ng-container>
+        <!-- ============================================================== -->
       </div>
     </div>
   </div>

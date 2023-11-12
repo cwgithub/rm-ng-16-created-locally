@@ -20,6 +20,7 @@ export class AssessmentComponent implements AfterViewInit {
 
   assessment?: any;
   optionGroup: string[] = ['', '', ''];
+  optionValue: string = '';
 
   private _assessmentName = 'grade5';
 
