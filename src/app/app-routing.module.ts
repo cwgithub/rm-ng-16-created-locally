@@ -17,8 +17,15 @@ const routes: Routes = [
   {
     path: 'vexflow',
     loadComponent: () =>
-      import('./features/vexflow/components/vexflow/vexflow.component').then(
+      import('./features/tests/vexflow/components/vexflow.component').then(
         (m) => m.VexflowComponent
+      ),
+  },
+  {
+    path: 'layouts',
+    loadComponent: () =>
+      import('./features/tests/layouts/components/layouts.component').then(
+        (m) => m.LayoutsComponent
       ),
   },
 
@@ -29,5 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

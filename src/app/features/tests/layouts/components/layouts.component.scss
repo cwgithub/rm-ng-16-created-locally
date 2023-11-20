@@ -1,0 +1,41 @@
+.box {
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  border: 1px solid gray;
+}
+
+.option-container {
+  display: flex;
+  background-color: bisque;
+  flex-direction: column;
+  // flex-direction: row;
+}
+
+.option {
+  //align-items: flex-start;
+  display: flex;
+  background-color: orange;
+}
+
+.option > div {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+
+  border: 1px solid gray;
+
+  &.answer {
+    background-color: pink;
+    min-width: 12rem;
+  }
+
+  &.control {
+    background-color: yellow;
+    min-width: 4rem;
+  }
+
+  font-size: 30px;
+}
