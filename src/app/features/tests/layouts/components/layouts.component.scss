@@ -22,6 +22,14 @@
   //align-items: flex-start;
   display: flex;
   background-color: rgb(249, 241, 228);
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
 }
 
 .option > div {
