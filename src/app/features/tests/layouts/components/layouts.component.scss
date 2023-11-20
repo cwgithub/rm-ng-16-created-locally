@@ -7,15 +7,21 @@
 
 .option-container {
   display: flex;
-  background-color: bisque;
-  flex-direction: column;
-  // flex-direction: row;
+  background-color: rgb(220, 217, 214);
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
 }
 
 .option {
   //align-items: flex-start;
   display: flex;
-  background-color: orange;
+  background-color: rgb(249, 241, 228);
 }
 
 .option > div {
@@ -25,7 +31,7 @@
   justify-content: center;
   min-height: 4rem;
 
-  border: 1px solid gray;
+  // border: 1px solid gray;
 
   &.answer {
     background-color: pink;
@@ -33,7 +39,7 @@
   }
 
   &.control {
-    background-color: yellow;
+    background-color: white;
     min-width: 4rem;
   }
 
