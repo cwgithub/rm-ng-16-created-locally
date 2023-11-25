@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/components/home/home.component';
+import { DragAndDropComponent } from './features/tests/gizmos/components/drag-and-drop.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,15 @@ const routes: Routes = [
       ),
   },
 
-  { path: '', redirectTo: '/assessment-container', pathMatch: 'full' },
+  {
+    path: 'gizmos',
+    loadComponent: () =>
+      import('./features/tests/gizmos/components/drag-and-drop.component').then(
+        (m) => m.DragAndDropComponent
+      ),
+  },
+
+  { path: '', redirectTo: '/gizmos', pathMatch: 'full' },
 ];
 
 @NgModule({
