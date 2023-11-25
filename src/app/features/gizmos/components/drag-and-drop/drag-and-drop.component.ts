@@ -6,8 +6,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './drag-and-drop.component.html',
-  styleUrls: ['./drag-and-drop.component.scss']
+  styleUrls: ['./drag-and-drop.component.scss'],
 })
 export class DragAndDropComponent {
-
+  dragImage = 'assets/tests/gizmos/drag-and-drop-barline.png';
+  dropImage = 'assets/tests/gizmos/drag-and-drop-stave.png';
 }

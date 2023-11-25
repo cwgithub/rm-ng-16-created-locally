@@ -1,0 +1,15 @@
+
+.drag-and-drop-container {
+
+  display: inline-flex;
+  background-color: rgb(184, 236, 255);
+  flex-direction: row;
+}
+
+.drag-site {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(0, 0, 0);
+  min-width: 100px;
+  min-height: 100px;
+}
