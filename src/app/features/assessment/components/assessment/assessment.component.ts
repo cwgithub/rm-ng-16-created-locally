@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ export type Prompt = [PromptType: string];
 @Component({
   selector: 'app-assessment',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, MatRadioModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatRadioModule, NgIf],
   templateUrl: './assessment.component.html',
   styleUrls: ['./assessment.component.scss'],
 })
