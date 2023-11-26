@@ -1,0 +1,49 @@
+<div class="drag-and-drop-container">
+  <!--
+  <span class="drag-site">
+    <img
+      [src]="dragImage"
+      cdkDrag
+      (cdkDragStarted)="cdkDragStarted($event)"
+      (cdkDragMoved)="cdkDragMoved($event)"
+      (cdkDragReleased)="cdkDragReleased($event)"
+      (cdkDragDropped)="cdkDragDropped($event)"
+    />
+  </span>
+
+  <span cdkDropListGroup>
+    <img
+      cdkDropList
+      (cdkDropListEntered)="cdkDropListEntered($event)"
+      (cdkDropListExited)="cdkDropListExited($event)"
+      (cdkDropListDropped)="cdkDropListDropped($event)"
+      [src]="dropImage"
+    />
+  </span>
+</div>
+-->
+
+  <span
+    class="drag-site"
+    [dndDragImageOffsetFunction]="imageOffsetFunction"
+    [dndDraggable]="draggable.data"
+    [dndEffectAllowed]="'all'"
+    [dndDisableIf]="draggable.disable"
+    (dndStart)="onDragStart($event)"
+    (dndCopied)="onDraggableCopied($event)"
+    (dndLinked)="onDraggableLinked($event)"
+    (dndMoved)="onDraggableMoved($event)"
+    (dndCanceled)="onDragCanceled($event)"
+    (dndEnd)="onDragEnd($event)"
+  >
+    <img [src]="dragImage" />
+  </span>
+
+  <span
+    dndDropzone
+    [dndDisableIf]="!dropzoneEnabled"
+    (dndDrop)="onDrop($event)"
+  >
+    <img [src]="dropImage" />
+  </span>
+</div>

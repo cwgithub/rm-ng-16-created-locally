@@ -1,13 +1,26 @@
-<p>drag-and-drop Gizmo works!</p>
-
 <div class="drag-and-drop-container">
-  <!-- Drag site -->
   <span class="drag-site">
-    <img [src]="dragImage" />
+    <img
+      class="img-border"
+      [src]="dragImage"
+      cdkDrag
+      (cdkDragStarted)="cdkDragStarted($event)"
+      (cdkDragMoved)="cdkDragMoved($event)"
+      (cdkDragReleased)="cdkDragReleased($event)"
+      (cdkDragDropped)="cdkDragDropped($event)"
+    />
   </span>
 
-  <!-- Drop site -->
   <span>
-    <img [src]="dropImage" />
+    <img
+      [src]="dropImage"
+      (cdkDropListEntered)="cdkDropListEntered($event)"
+      (cdkDropListExited)="cdkDropListExited($event)"
+      (cdkDropListDropped)="cdkDropListDropped($event)"
+    />
   </span>
+</div>
+
+<div class="result">
+  {{ result }}
 </div>
