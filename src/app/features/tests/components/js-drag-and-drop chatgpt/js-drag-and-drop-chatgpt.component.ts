@@ -10,6 +10,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface cacheEntry {
+  left: number;
+  top: number;
+}
+
 @Component({
   selector: 'app-js-drag-and-drop-chatgpt',
   standalone: true,
@@ -22,22 +27,19 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
 
-  // @ViewChild('draggableElement', { static: true }) draggableElementRef:
-  //   | ElementRef
-  //   | undefined;
-
   @ViewChildren('draggablElements')
   draggableComponentRefs?: QueryList<ElementRef>;
-
-  draggableElementRef?: ElementRef;
-
   @ViewChild('droppableElement', { static: true }) droppableElementRef:
     | ElementRef
     | undefined;
 
+  draggableElementRef?: ElementRef; // dynamically set to the current dragged element
+
   offsetX: number = -1;
   offsetY: number = -1;
   isDragging = false;
+
+  _cache: { [id: string]: cacheEntry } = {};
 
   draggableElements?: HTMLElement[] = [];
 
@@ -72,9 +74,7 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
   // ==========================================================================
 
   dragstart(e: any) {
-
     this.draggableElement = e.currentTarget;
-
 
     if (this.draggableElement) {
       this.isDragging = true;
@@ -95,6 +95,15 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
       const y = e.clientY - this.offsetY;
       this.draggableElement.style.left = x + 'px';
       this.draggableElement.style.top = y + 'px';
+
+      const data = this.draggableElement.getAttribute('data-image');
+
+      if (data) {
+        this._cache[data] = {
+          left: x,
+          top: y,
+        };
+      }
     }
   }
 
@@ -138,6 +147,25 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
       this.draggableElement.style.left = leftPosition + 'px';
       this.draggableElement.style.top = topPosition + 'px';
     }
+
+    const storedCache = localStorage.getItem(`${this.gizmoInstance}-cache`);
+    if (storedCache) {
+      this._cache = JSON.parse(storedCache);
+    }
+
+    // - loop over the _cache
+    Object.keys(this._cache).forEach((key: string) => {
+      const draggableElem = this.draggableElements?.find(
+        (elem: HTMLElement) => elem.getAttribute('data-image') === key
+      );
+      if (draggableElem) {
+        draggableElem.style.left = this._cache[key].left + 'px';
+        draggableElem.style.top = this._cache[key].top + 'px';
+      }
+    });
+
+    // - for each one, locate the draggable object by the image key value
+    // - set the Left and Top string values from the _cache entries
   }
 
   storeClick() {
@@ -156,6 +184,11 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
       localStorage.setItem(
         `${this.gizmoInstance}-topPosition`,
         `${topPosition}`
+      );
+
+      localStorage.setItem(
+        `${this.gizmoInstance}-cache`,
+        JSON.stringify(this._cache, null, 2)
       );
 
       console.log(`Position: left ${leftPosition}, top ${topPosition}`);
