@@ -1,3 +1,17 @@
+<div class="container">
+  <div class="drag-palette">
+    <div #draggableElement class="draggable" draggable="true">
+<!--     <img [src]="dragImage" /> -->
+    </div>
+  </div>
+
+  <div #droppableElement class="droppable">
+    <div>
+      <img class="drop-img" [src]="dropImage" />
+    </div>
+  </div>
+</div>
+
 <div>
   <h5>{{ gizmoInstance }}</h5>
 
@@ -13,17 +27,4 @@
   <button mat-button mat-raised-button color="primary" (click)="storeClick()">
     Store
   </button>
-</div>
-
-<div class="container">
-  <div class="drag-palette">
-    <div #draggableElement class="draggable" draggable="true"></div>
-    <div #draggableElement class="draggable" draggable="true"></div>
-  </div>
-
-  <div #droppableElement class="droppable">
-    <div>
-      <img class="drop-img" [src]="dropImage" />
-    </div>
-  </div>
 </div>
