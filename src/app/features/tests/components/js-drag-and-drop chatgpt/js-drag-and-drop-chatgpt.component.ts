@@ -9,9 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./js-drag-and-drop-chatgpt.component.scss'],
 })
 export class JsDragAndDropComponentChatGpt implements OnInit {
-  dragImage = 'assets/tests/gizmos/drag-and-drop-barline.png';
-  dropImage = 'assets/tests/gizmos/drag-and-drop-stave.png';
-
+  @Input() dragImage?: string;
+  @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
 
   @ViewChild('draggableElement', { static: true }) draggableElementRef:
@@ -56,8 +55,6 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
   allowDrop(e: any) {
     e.preventDefault();
   }
-
-  // mouseDown(e: any) {
   dragstart(e: any) {
     if (this.draggableElement) {
       this.isDragging = true;
@@ -116,7 +113,6 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
       console.log(`Position: left ${leftPosition}, top ${topPosition}`);
     }
   }
-
   drop(e: any) {
     e.target.classList.remove('drag-over');
 

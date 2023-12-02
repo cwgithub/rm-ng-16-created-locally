@@ -1,11 +1,6 @@
 .container {
-  background-color: rgb(108, 202, 0);
   display: inline-flex;
   flex-direction: row;
-
-  // position: relative;
-
-  // position: absolute;
 }
 
 .drag-palette {
@@ -18,9 +13,6 @@
   min-height: 100px;
 }
 
-
-
-
 .draggable {
   width: 50px;
   height: 50px;
@@ -31,7 +23,7 @@
   cursor: move;
   position: absolute;
   z-index: 99;
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .outer {
@@ -39,7 +31,6 @@
   flex-direction: row;
   width: 800px;
   height: 100px;
-  // background-color: lightblue;
 }
 
 .hide {
