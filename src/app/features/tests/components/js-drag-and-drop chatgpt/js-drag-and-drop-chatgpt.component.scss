@@ -5,6 +5,7 @@
 
 .drag-palette {
   display: inline-flex;
+  flex-direction: row;
   // align-items: center;
   // justify-content: center;
   background-color: rgb(225, 218, 218);

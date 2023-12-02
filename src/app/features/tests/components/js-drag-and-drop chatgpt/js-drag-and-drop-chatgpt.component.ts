@@ -1,4 +1,13 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,14 +17,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './js-drag-and-drop-chatgpt.component.html',
   styleUrls: ['./js-drag-and-drop-chatgpt.component.scss'],
 })
-export class JsDragAndDropComponentChatGpt implements OnInit {
-  @Input() dragImage?: string;
+export class JsDragAndDropComponentChatGpt implements AfterViewInit {
+  @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
 
-  @ViewChild('draggableElement', { static: true }) draggableElementRef:
-    | ElementRef
-    | undefined;
+  // @ViewChild('draggableElement', { static: true }) draggableElementRef:
+  //   | ElementRef
+  //   | undefined;
+
+  @ViewChildren('draggablElements')
+  draggableComponentRefs?: QueryList<ElementRef>;
+
+  draggableElementRef?: ElementRef;
+
   @ViewChild('droppableElement', { static: true }) droppableElementRef:
     | ElementRef
     | undefined;
@@ -24,21 +39,21 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
   offsetY: number = -1;
   isDragging = false;
 
+  draggableElements?: HTMLElement[] = [];
+
   draggableElement?: HTMLElement;
   droppableElement?: HTMLElement;
 
   constructor() {}
 
-  ngOnInit(): void {
-    if (this.draggableElementRef) {
-      this.draggableElement = this.draggableElementRef
-        .nativeElement as HTMLElement;
-
-      this.draggableElement.addEventListener(
-        'dragstart',
-        this.dragstart.bind(this)
-      );
-      this.draggableElement.addEventListener('drag', this.drag.bind(this));
+  ngAfterViewInit(): void {
+    if (this.draggableComponentRefs) {
+      this.draggableComponentRefs.forEach((elemRef: ElementRef) => {
+        const elem = elemRef.nativeElement as HTMLElement;
+        elem.addEventListener('dragstart', this.dragstart.bind(this));
+        elem.addEventListener('drag', this.drag.bind(this));
+        this.draggableElements?.push(elem);
+      });
     }
 
     if (this.droppableElementRef) {
@@ -52,10 +67,15 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
     }
   }
 
-  allowDrop(e: any) {
-    e.preventDefault();
-  }
+  // ==========================================================================
+  // Events on the draggable part ...
+  // ==========================================================================
+
   dragstart(e: any) {
+
+    this.draggableElement = e.currentTarget;
+
+
     if (this.draggableElement) {
       this.isDragging = true;
       this.offsetX =
@@ -77,6 +97,34 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
       this.draggableElement.style.top = y + 'px';
     }
   }
+
+  // ==========================================================================
+  // Events on the droppable part ...
+  // ==========================================================================
+
+  allowDrop(e: any) {
+    e.preventDefault();
+  }
+  drop(e: any) {
+    e.target.classList.remove('drag-over');
+
+    this.isDragging = false;
+
+    // get the draggable element
+    const data = e.dataTransfer.getData('text/plain');
+    // const draggable = document.getElementById(id);
+
+    setTimeout(() => {
+      if (this.draggableElement) {
+        // display the draggable element
+        this.draggableElement.classList.remove('hide');
+      }
+    }, 0);
+  }
+
+  // ==========================================================================
+  // Events on the buttons ...
+  // ==========================================================================
 
   positionClick() {
     const leftPosition = localStorage.getItem(
@@ -112,21 +160,5 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
 
       console.log(`Position: left ${leftPosition}, top ${topPosition}`);
     }
-  }
-  drop(e: any) {
-    e.target.classList.remove('drag-over');
-
-    this.isDragging = false;
-
-    // get the draggable element
-    const data = e.dataTransfer.getData('text/plain');
-    // const draggable = document.getElementById(id);
-
-    setTimeout(() => {
-      if (this.draggableElement) {
-        // display the draggable element
-        this.draggableElement.classList.remove('hide');
-      }
-    }, 0);
   }
 }

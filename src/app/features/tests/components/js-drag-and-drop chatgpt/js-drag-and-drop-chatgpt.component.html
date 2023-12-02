@@ -1,6 +1,7 @@
 <div class="container">
   <div class="drag-palette">
-    <img
+    <img #draggablElements
+      *ngFor="let dragImage of dragImages"
       #draggableElement
       class="draggable"
       draggable="true"
