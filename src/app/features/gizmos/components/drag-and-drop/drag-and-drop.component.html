@@ -1,24 +1,34 @@
 <div class="drag-and-drop-container">
   <span class="drag-site">
     <img
-      class="img-border"
+      id="drag-img"
+      #draggable
       [src]="dragImage"
       cdkDrag
+
       (cdkDragStarted)="cdkDragStarted($event)"
       (cdkDragMoved)="cdkDragMoved($event)"
       (cdkDragReleased)="cdkDragReleased($event)"
       (cdkDragDropped)="cdkDragDropped($event)"
+
+      style="left: 10px; top: 10px;"
     />
   </span>
 
   <span>
     <img
-      [src]="dropImage"
-      (cdkDropListEntered)="cdkDropListEntered($event)"
-      (cdkDropListExited)="cdkDropListExited($event)"
-      (cdkDropListDropped)="cdkDropListDropped($event)"
-    />
+    id="drop-img"
+    #droppable [src]="dropImage" />
   </span>
+
+  <button
+    mat-button
+    mat-raised-button
+    color="primary"
+    (click)="positionDraggable(397, 120)"
+  >
+    Primary
+  </button>
 </div>
 
 <div class="result">

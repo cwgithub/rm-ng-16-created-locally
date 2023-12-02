@@ -1,27 +1,31 @@
-
 .drag-and-drop-container {
-
+  background-color: white;
   display: inline-flex;
-  background-color: rgb(184, 236, 255);
   flex-direction: row;
+
+  position: relative;
+
+  position: absolute;
 }
 
 .drag-site {
-  display: flex;
-  align-items: center;
+  // display: inline-flex;
+  // align-items: center;
+  // justify-content: center;
+  background-color: rgb(225, 218, 218);
   border: 1px solid rgb(0, 0, 0);
   min-width: 100px;
   min-height: 100px;
 }
 
-.img-border {
-      border: 1px solid rgb(0, 0, 0);
-
+#drag-img,
+#drop-img {
+  border: 1px solid rgb(0, 0, 0);
+  position: absolute;
 }
 
 .result {
-    border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   min-width: 100px;
   min-height: 100px;
-
 }

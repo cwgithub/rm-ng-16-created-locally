@@ -1,0 +1,28 @@
+
+
+
+.outer {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  height: 100px;
+  background-color: lightblue;
+}
+
+.inner {
+  width: 10px;
+  height: 100px;
+  background-color: red;
+}
+
+.draggables {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(231, 241, 219);
+}
+
+.dropables {
+  width: 700px;
+  height: 100px;
+  background-color: rgb(108, 244, 212);
+}

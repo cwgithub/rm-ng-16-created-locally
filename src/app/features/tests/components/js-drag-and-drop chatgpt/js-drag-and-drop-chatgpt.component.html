@@ -1,0 +1,28 @@
+<div>
+  <h5>{{ gizmoInstance }}</h5>
+
+  <button
+    mat-button
+    mat-raised-button
+    color="primary"
+    (click)="positionClick()"
+  >
+    Position
+  </button>
+
+  <button mat-button mat-raised-button color="primary" (click)="storeClick()">
+    Store
+  </button>
+</div>
+
+<div class="container">
+  <div class="drag-palette">
+    <div class="draggable" draggable="true"></div>
+  </div>
+
+  <div class="droppable">
+    <div>
+      <img class="drop-img" #droppable [src]="dropImage" />
+    </div>
+  </div>
+</div>
