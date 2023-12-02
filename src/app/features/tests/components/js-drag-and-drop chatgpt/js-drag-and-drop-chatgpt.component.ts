@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-js-drag-and-drop-chatgpt',
@@ -15,29 +14,43 @@ export class JsDragAndDropComponentChatGpt implements OnInit {
 
   @Input() gizmoInstance?: number;
 
+  @ViewChild('draggableElement', { static: true }) draggableElementRef:
+    | ElementRef
+    | undefined;
+  @ViewChild('droppableElement', { static: true }) droppableElementRef:
+    | ElementRef
+    | undefined;
+
   offsetX: number = -1;
   offsetY: number = -1;
   isDragging = false;
+
   draggableElement?: HTMLElement;
   droppableElement?: HTMLElement;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.draggableElement = document.querySelector('.draggable') as HTMLElement;
+    if (this.draggableElementRef) {
+      this.draggableElement = this.draggableElementRef
+        .nativeElement as HTMLElement;
 
-    this.draggableElement.addEventListener(
-      'dragstart',
-      this.dragstart.bind(this)
-    );
-    this.draggableElement.addEventListener('drag', this.drag.bind(this));
+      this.draggableElement.addEventListener(
+        'dragstart',
+        this.dragstart.bind(this)
+      );
+      this.draggableElement.addEventListener('drag', this.drag.bind(this));
+    }
 
-    this.droppableElement = document.querySelector('.droppable') as HTMLElement;
-    this.droppableElement.addEventListener(
-      'dragover',
-      this.allowDrop.bind(this)
-    );
-    this.droppableElement.addEventListener('drop', this.drop.bind(this));
+    if (this.droppableElementRef) {
+      this.droppableElement = this.droppableElementRef
+        .nativeElement as HTMLElement;
+      this.droppableElement.addEventListener(
+        'dragover',
+        this.allowDrop.bind(this)
+      );
+      this.droppableElement.addEventListener('drop', this.drop.bind(this));
+    }
   }
 
   allowDrop(e: any) {
