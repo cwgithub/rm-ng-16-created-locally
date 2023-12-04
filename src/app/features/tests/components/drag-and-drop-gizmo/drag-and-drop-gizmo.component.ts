@@ -16,18 +16,18 @@ interface cacheEntry {
 }
 
 @Component({
-  selector: 'app-js-drag-and-drop-chatgpt',
+  selector: 'app-drag-and-drop-gizmo',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './js-drag-and-drop-chatgpt.component.html',
-  styleUrls: ['./js-drag-and-drop-chatgpt.component.scss'],
+  templateUrl: './drag-and-drop-gizmo.component.html',
+  styleUrls: ['./drag-and-drop-gizmo.component.scss'],
 })
-export class JsDragAndDropComponentChatGpt implements AfterViewInit {
+export class DragAndDropGizmoComponent implements AfterViewInit {
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
 
-  @ViewChildren('draggablElements')
+  @ViewChildren('draggableElements')
   draggableComponentRefs?: QueryList<ElementRef>;
   @ViewChild('droppableElement', { static: true }) droppableElementRef:
     | ElementRef
@@ -136,18 +136,6 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
   // ==========================================================================
 
   positionClick() {
-    const leftPosition = localStorage.getItem(
-      `${this.gizmoInstance}-leftPosition`
-    );
-    const topPosition = localStorage.getItem(
-      `${this.gizmoInstance}-topPosition`
-    );
-
-    if (this.draggableElement) {
-      this.draggableElement.style.left = leftPosition + 'px';
-      this.draggableElement.style.top = topPosition + 'px';
-    }
-
     const storedCache = localStorage.getItem(`${this.gizmoInstance}-cache`);
     if (storedCache) {
       this._cache = JSON.parse(storedCache);
@@ -176,15 +164,6 @@ export class JsDragAndDropComponentChatGpt implements AfterViewInit {
         10
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
-
-      localStorage.setItem(
-        `${this.gizmoInstance}-leftPosition`,
-        `${leftPosition}`
-      );
-      localStorage.setItem(
-        `${this.gizmoInstance}-topPosition`,
-        `${topPosition}`
-      );
 
       localStorage.setItem(
         `${this.gizmoInstance}-cache`,

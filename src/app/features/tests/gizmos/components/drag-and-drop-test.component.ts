@@ -1,20 +1,12 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragAndDropComponent } from 'src/app/features/gizmos/components/drag-and-drop/drag-and-drop.component';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 import { JsDragAndDropComponent } from '../../components/js-drag-and-drop/js-drag-and-drop.component';
-import { JsDragAndDropComponentChatGpt } from '../../components/js-drag-and-drop chatgpt/js-drag-and-drop-chatgpt.component';
+import { DragAndDropGizmoComponent } from '../../components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
 
 @Component({
   selector: 'app-drag-and-dro-test',
   standalone: true,
-  imports: [
-    CommonModule,
-    DragAndDropComponent,
-    CdkDrag,
-    JsDragAndDropComponent,
-    JsDragAndDropComponentChatGpt,
-  ],
+  imports: [CommonModule, JsDragAndDropComponent, DragAndDropGizmoComponent],
   templateUrl: './drag-and-drop-test.component.html',
   styleUrls: ['./drag-and-drop-test.component.scss'],
 })
