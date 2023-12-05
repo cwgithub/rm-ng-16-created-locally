@@ -1,0 +1,107 @@
+{
+  "sectionNumber": 1,
+  "sectionName": "Rhythm",
+  "questions": [
+    {
+      "questionNumber": 1.1,
+      "type": "multiple-multiple-choice",
+      "selection": "radio",
+      "prompt": [["text", "Select the correct time signature for the bar."]],
+      "parts": [
+        {
+          "partRef": "a",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.1.a.jpg"
+          ],
+          "options": [
+            ["image", "assets/images/shared/time-sigs/2-4.jpg"],
+            ["image", "assets/images/shared/time-sigs/4-4.jpg"],
+            ["image", "assets/images/shared/time-sigs/3-4.jpg"]
+          ]
+        },
+        {
+          "partRef": "b",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.1.b.jpg"
+          ],
+          "options": [
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/5-4.jpg"
+            ],
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/9-8.jpg"
+            ],
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/4-4.jpg"
+            ]
+          ]
+        },
+        {
+          "partRef": "c",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.1.c.jpg"
+          ],
+          "options": [
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/6-8.jpg"
+            ],
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/7-8.jpg"
+            ],
+            [
+              "image",
+              "assets/assessments/grade5/images/shared/time-sigs/5-8.jpg"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "questionNumber": 1.2,
+      "type": "multiple-choice",
+      "selection": "radio",
+      "prompt": [
+        ["text", "Here is a bar in compound time:."],
+        ["image", "assets/assessments/grade5/images/questions/1.2.jpg"],
+        [
+          "text",
+          "Which of the following shows the bar correctly rewritten in simple time?  Tick (tick mark) one box."
+        ]
+      ],
+      "parts": [
+        {
+          "partRef": "a",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.2.a.jpg"
+          ],
+          "options": []
+        },
+        {
+          "partRef": "b",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.2.b.jpg"
+          ],
+          "options": []
+        },
+        {
+          "partRef": "c",
+          "prompt": [
+            "image",
+            "assets/assessments/grade5/images/questions/1.2.b.jpg"
+          ],
+          "options": []
+        }
+      ]
+    }
+  ]
+}

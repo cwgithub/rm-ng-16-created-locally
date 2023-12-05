@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" autosize>
+<!--  <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Auto-resizing sidenav</p>
   </mat-drawer>
@@ -10,4 +10,21 @@
 
     <app-assessment></app-assessment>
   </div>
-</mat-drawer-container>
+</mat-drawer-container> -->
+
+<div class="container">
+  <div class="buttons">
+    <button type="button" mat-button (click)="loadSection(1)">
+      Load Section 1
+    </button>
+
+    <button type="button" mat-button (click)="previousQuestion()">
+      Previous
+    </button>
+
+    <button type="button" mat-button (click)="nextQuestion()">Next</button>
+  </div>
+
+  <div>{{ currentQuestionNumber }}</div>
+  <div [innerHTML]="html"></div>
+</div>

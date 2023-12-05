@@ -1,7 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JsDragAndDropComponent } from '../../components/js-drag-and-drop/js-drag-and-drop.component';
-import { DragAndDropGizmoComponent } from '../../components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
+import { JsDragAndDropComponent } from '../../js-drag-and-drop/js-drag-and-drop.component';
+import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
+
 
 @Component({
   selector: 'app-drag-and-dro-test',

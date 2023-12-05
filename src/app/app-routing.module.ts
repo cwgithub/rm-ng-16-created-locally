@@ -31,12 +31,12 @@ const routes: Routes = [
   {
     path: 'gizmos',
     loadComponent: () =>
-      import('./features/tests/gizmos/components/drag-and-drop-test.component').then(
-        (m) => m.DragAndDropTestComponent
-      ),
+      import(
+        './features/tests/gizmos/components/drag-and-drop-test.component'
+      ).then((m) => m.DragAndDropTestComponent),
   },
 
-  { path: '', redirectTo: '/gizmos', pathMatch: 'full' },
+  { path: '', redirectTo: '/assessment-container', pathMatch: 'full' },
 ];
 
 @NgModule({
