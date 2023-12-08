@@ -1,6 +1,10 @@
 export interface QuestionSpec {
   questionNumber: number;
+  questionHtmlDir: string;
   questionHtmlFile: string;
+  gizmo?: string;
+  draggables: string[];
+  droppable: string;
 }
 
 export interface SectionSpec {

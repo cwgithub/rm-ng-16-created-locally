@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgIf, NgSwitch } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AssessmentComponent } from '../assessment/assessment.component';
@@ -9,6 +9,7 @@ import {
   QuestionSpec,
   SectionSpec,
 } from 'src/app/core/services/models/interfaces';
+import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
 
 @Component({
   standalone: true,
@@ -18,6 +19,8 @@ import {
     MatButtonModule,
     AssessmentComponent,
     NgIf,
+    NgSwitch,
+    DragAndDropGizmoComponent,
   ],
   templateUrl: './assessment-container.component.html',
   styleUrls: ['./assessment-container.component.scss'],
@@ -26,6 +29,10 @@ export class AssessmentContainerComponent {
   showFiller = false;
   html?: string;
   currentQuestionNumber = 1;
+
+  draggables?: string[] = [];
+
+  currentQuestion?: QuestionSpec;
 
   private _currentSection: any;
 
@@ -60,17 +67,25 @@ export class AssessmentContainerComponent {
   }
 
   loadQuestion(questionNumber: number) {
-    const question = this._currentSection.questions.find(
+    this.currentQuestion = this._currentSection.questions.find(
       (question: QuestionSpec) => question.questionNumber == questionNumber
     );
 
-    this._assessmentService
-      .loadFile(question.questionHtmlFile)
-      .subscribe((html: any) => {
-        this.html = html;
-      });
+    if (this.currentQuestion?.draggables) {
+      this.draggables = this.currentQuestion?.draggables.map(
+        (dName: string) => `${this.currentQuestion?.questionHtmlDir}/${dName}`
+      );
+    }
 
-    console.log(question);
+    this.html = undefined;
+
+    if (this.currentQuestion) {
+      this._assessmentService
+        .loadFile(this.currentQuestion.questionHtmlFile)
+        .subscribe((html: any) => {
+          this.html = html;
+        });
+    }
   }
 
   getCurrentSection(): any {
