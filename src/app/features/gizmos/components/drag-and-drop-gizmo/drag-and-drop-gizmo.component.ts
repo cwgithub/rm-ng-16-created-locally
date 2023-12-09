@@ -2,12 +2,15 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   QueryList,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnswerService } from 'src/app/core/services/answer.service';
 
 interface cacheEntry {
   left: number;
@@ -25,6 +28,8 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
+
+  @Output() answerEvent = new EventEmitter<any>();
 
   @ViewChildren('draggableElements')
   draggableComponentRefs?: QueryList<ElementRef>;
@@ -45,7 +50,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   draggableElement?: HTMLElement;
   droppableElement?: HTMLElement;
 
-  constructor() {}
+  constructor(private _answerService: AnswerService) {}
 
   ngAfterViewInit(): void {
     this.setUp();
@@ -175,5 +180,16 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
       console.log(`Position: left ${leftPosition}, top ${topPosition}`);
     }
+  }
+
+  answer() {
+    const testAnswer = {
+      gizmo: 'drag-and-drop',
+      data: {
+        foo: 'bar',
+      },
+    };
+
+    this.answerEvent.emit(testAnswer);
   }
 }

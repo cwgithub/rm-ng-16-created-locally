@@ -30,7 +30,7 @@
   <ng-container *ngIf="currentSectionSpec">
     <div class="question-number">
       Question {{ currentQuestionNumber }}, Section
-      {{ currentSectionSpec?.sectionName }}
+      {{ currentSectionSpec.sectionName }}
     </div>
 
     <div [innerHTML]="html"></div>
@@ -41,11 +41,13 @@
           *ngSwitchCase="'drag-and-drop'"
           [dragImages]="currentQuestionSpec?.draggables"
           [dropImage]="currentQuestionSpec?.droppable"
+          (answerEvent)="onAnswerEvent($event)"
         ></app-drag-and-drop-gizmo>
 
         <app-multiple-choice-list-gizmo
           *ngSwitchCase="'multiple-choice-list'"
           [options]="currentQuestionSpec?.options"
+          (answerEvent)="onAnswerEvent($event)"
         ></app-multiple-choice-list-gizmo>
       </container-element>
     </ng-container>

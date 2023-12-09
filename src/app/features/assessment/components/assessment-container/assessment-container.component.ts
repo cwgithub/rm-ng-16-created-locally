@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf, NgSwitch } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AssessmentComponent } from '../assessment/assessment.component';
 import { AssessmentService } from '../../../../core/services/assessment.service';
 import {
   AssessmentSpec,
   QuestionSpec,
   SectionSpec,
-} from 'src/app/core/services/models/interfaces';
+} from 'src/app/core/models/interfaces';
 import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
 import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/components/multiple-choice-list-gizmo/multiple-choice-list-gizmo.component';
+import { AnswerService } from 'src/app/core/services/answer.service';
 
 @Component({
   standalone: true,
@@ -18,7 +18,6 @@ import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/compon
     CommonModule,
     MatSidenavModule,
     MatButtonModule,
-    AssessmentComponent,
     NgIf,
     NgSwitch,
     DragAndDropGizmoComponent,
@@ -28,6 +27,8 @@ import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/compon
   styleUrls: ['./assessment-container.component.scss'],
 })
 export class AssessmentContainerComponent implements OnInit {
+  userId = 'cbw';
+
   currentAssessmentSpec?: AssessmentSpec;
   currentSectionSpec?: SectionSpec;
   currentQuestionSpec?: QuestionSpec;
@@ -38,7 +39,12 @@ export class AssessmentContainerComponent implements OnInit {
   draggables?: string[] = [];
   options?: string[] = [];
 
-  constructor(private _assessmentService: AssessmentService) {}
+  constructor(
+    private _assessmentService: AssessmentService,
+    private _answerService: AnswerService
+  ) {
+    this._answerService.getUserId(this.userId);
+  }
 
   ngOnInit(): void {
     this.loadAssessmentSpec(
@@ -145,6 +151,23 @@ export class AssessmentContainerComponent implements OnInit {
         .subscribe((html: any) => {
           this.html = html;
         });
+    }
+  }
+
+  onAnswerEvent(answerData: any) {
+    if (
+      this.userId &&
+      this.currentAssessmentSpec?.assessmentId &&
+      this.currentSectionSpec?.sectionName &&
+      this.currentQuestionSpec?.questionNumber
+    ) {
+      this._answerService.setAnswer(
+        this.userId,
+        this.currentAssessmentSpec?.assessmentId,
+        this.currentSectionSpec?.sectionName,
+        this.currentQuestionSpec?.questionNumber,
+        answerData
+      );
     }
   }
 }

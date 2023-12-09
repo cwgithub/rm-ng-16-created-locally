@@ -1,4 +1,5 @@
 export interface AssessmentSpec {
+  assessmentId: string;
   grade: number;
   name: string;
   sections: SectionSpec[];
