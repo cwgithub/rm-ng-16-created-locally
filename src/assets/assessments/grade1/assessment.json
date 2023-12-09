@@ -3,7 +3,7 @@
   "name": "Sample Grade 1 Assessment",
   "sections": [
     {
-      "section": 1,
+      "sectionNumber": 1,
       "sectionFile": "assets/assessments/grade1/rhythm/section.json"
     }
   ]

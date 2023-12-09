@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class="buttons">
-    <button type="button" mat-button (click)="loadSection(1)">
+    <button type="button" mat-button (click)="loadSectionSpec(1)">
       Load Section 1
     </button>
 
@@ -29,12 +29,12 @@
 
   <div [innerHTML]="html"></div>
 
-  <ng-container *ngIf="currentQuestion?.gizmo">
-    <container-element [ngSwitch]="currentQuestion?.gizmo">
+  <ng-container *ngIf="currentQuestionSpec?.gizmo">
+    <container-element [ngSwitch]="currentQuestionSpec?.gizmo">
       <app-drag-and-drop-gizmo
         *ngSwitchCase="'drag-and-drop'"
-        [dragImages]="currentQuestion?.draggables"
-        [dropImage]="currentQuestion?.droppable"
+        [dragImages]="currentQuestionSpec?.draggables"
+        [dropImage]="currentQuestionSpec?.droppable"
       ></app-drag-and-drop-gizmo>
     </container-element>
   </ng-container>

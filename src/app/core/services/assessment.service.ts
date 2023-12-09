@@ -1,46 +1,87 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, switchMap, tap } from 'rxjs';
-import { AssessmentSpec, SectionSpec } from './models/interfaces';
+import { Observable, tap } from 'rxjs';
+import { AssessmentSpec, QuestionSpec, SectionSpec } from './models/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssessmentService {
-  private _assessmentSpec?: AssessmentSpec;
+  private _cache = new Map<string, AssessmentSpec>();
 
   constructor(private _httpClient: HttpClient) {}
 
-  loadAssessment(fileName: string) {
+  loadAssessmentSpec(
+    shortName: string,
+    fullPath: string
+  ): Observable<AssessmentSpec> {
     return this._httpClient
-      .get<AssessmentSpec>(fileName)
+      .get<AssessmentSpec>(fullPath)
       .pipe(
-        tap(
-          (assessmentSpec: AssessmentSpec) =>
-            (this._assessmentSpec = assessmentSpec)
+        tap((assessmentSpec: AssessmentSpec) =>
+          this._cache.set(shortName, assessmentSpec)
         )
       );
   }
 
-  getSection(sectionNumber: number): Observable<any> {
-    if (!this._assessmentSpec) {
+  loadSectionSpec(
+    assessmentSpec: AssessmentSpec,
+    sectionNumber: number
+  ): Observable<SectionSpec> {
+    if (!assessmentSpec) {
       throw new Error('Assessment not loaded');
     }
 
-    const section = this._assessmentSpec.sections.find(
-      (sectionSpec: SectionSpec) => (sectionSpec.sectionNumber = sectionNumber)
+    const sectionSpec = assessmentSpec.sections.find(
+      (sectionSpec: SectionSpec) => (sectionSpec.sectionNumber === sectionNumber)
     );
 
-    if (!section) {
-      throw new Error('Section file not found');
+    if (!sectionSpec) {
+      throw new Error('Section data not found');
     }
 
-    console.log('sectionFile ' + section?.sectionFile);
+    // load the section JSON data
+    return this._httpClient.get<SectionSpec>(sectionSpec?.sectionFile);
+  }
 
-    return this._httpClient.get(section?.sectionFile);
+  getQuestionSpec(
+    sectionSpec: SectionSpec,
+    questionNumber: number
+  ): QuestionSpec {
+    if (!sectionSpec) {
+      throw new Error('Section not loaded');
+    }
+
+    const questionSpec = sectionSpec.questions.find(
+      (questionSpec: QuestionSpec) =>
+        (questionSpec.questionNumber === questionNumber)
+    );
+
+    if (!questionSpec) {
+      throw new Error('Question data not found');
+    }
+
+    // load the section JSON data
+    return this.cloneQuestionSpec(questionSpec);
   }
 
   loadFile(fileName: string) {
     return this._httpClient.get(fileName, { responseType: 'text' });
+  }
+
+  private cloneQuestionSpec(original: QuestionSpec): QuestionSpec {
+    const clone: QuestionSpec = {
+      questionNumber: original.questionNumber,
+      questionHtmlDir: original.questionHtmlDir,
+      questionHtmlFile: original.questionHtmlFile,
+      gizmo: original?.gizmo,
+      draggables: original.draggables ? [...original.draggables] : undefined,
+      droppable: original?.droppable,
+    };
+
+
+
+
+    return clone;
   }
 }

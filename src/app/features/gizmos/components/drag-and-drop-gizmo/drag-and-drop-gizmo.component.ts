@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   Input,
-  OnInit,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -49,6 +48,10 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   constructor() {}
 
   ngAfterViewInit(): void {
+    this.setUp();
+  }
+
+  setUp() {
     if (this.draggableComponentRefs) {
       this.draggableComponentRefs.forEach((elemRef: ElementRef) => {
         const elem = elemRef.nativeElement as HTMLElement;

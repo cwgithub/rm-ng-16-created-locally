@@ -44,11 +44,20 @@
     {
       "questionNumber": 7,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/7/q.html",
-      "gizmo": "drag-and-drop"
+      "gizmo": "drag-and-drop",
+      "draggables": [
+        "assets/assessments/grade1/rhythm/questions/7/draggables/barline.png"
+      ],
+      "droppable": "assets/assessments/grade1/rhythm/questions/7/droppable.png"
     },
     {
       "questionNumber": 8,
-      "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/8/q.html"
+      "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/8/q.html",
+      "gizmo": "drag-and-drop",
+      "draggables": [
+        "assets/assessments/grade1/rhythm/questions/8/draggables/barline.png"
+      ],
+      "droppable": "assets/assessments/grade1/rhythm/questions/8/droppable.png"
     },
     {
       "questionNumber": 9,

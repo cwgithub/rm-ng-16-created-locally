@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JsDragAndDropComponent } from '../../js-drag-and-drop/js-drag-and-drop.component';
 import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
@@ -11,7 +11,7 @@ import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/dr
   templateUrl: './drag-and-drop-test.component.html',
   styleUrls: ['./drag-and-drop-test.component.scss'],
 })
-export class DragAndDropTestComponent implements AfterViewInit {
+export class DragAndDropTestComponent implements AfterViewInit, OnDestroy {
   dragImage = 'assets/tests/gizmos/drag-and-drop-barline.png';
   dropImage = 'assets/tests/gizmos/drag-and-drop-stave.png';
 
@@ -42,6 +42,10 @@ export class DragAndDropTestComponent implements AfterViewInit {
 
     console.log(this.outerElem);
     console.log(this.innerElem);
+  }
+
+  ngOnDestroy(): void {
+    alert('I am being destroyed!')
   }
 
   moveInner() {
