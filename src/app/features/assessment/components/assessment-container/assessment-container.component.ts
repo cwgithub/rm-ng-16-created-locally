@@ -4,13 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AssessmentComponent } from '../assessment/assessment.component';
 import { AssessmentService } from '../../../../core/services/assessment.service';
-import { tap, Observable, switchMap } from 'rxjs';
 import {
   AssessmentSpec,
   QuestionSpec,
   SectionSpec,
 } from 'src/app/core/services/models/interfaces';
 import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
+import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/components/multiple-choice-list-gizmo/multiple-choice-list-gizmo.component';
 
 @Component({
   standalone: true,
@@ -22,6 +22,7 @@ import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/dr
     NgIf,
     NgSwitch,
     DragAndDropGizmoComponent,
+    MultipleChoiceListGizmoComponent,
   ],
   templateUrl: './assessment-container.component.html',
   styleUrls: ['./assessment-container.component.scss'],
@@ -35,6 +36,7 @@ export class AssessmentContainerComponent implements OnInit {
   html?: string;
   currentQuestionNumber = 1;
   draggables?: string[] = [];
+  options?: string[] = [];
 
   constructor(private _assessmentService: AssessmentService) {}
 
@@ -123,6 +125,13 @@ export class AssessmentContainerComponent implements OnInit {
   processQuestionSpec() {
     if (this.currentQuestionSpec?.draggables) {
       this.draggables = this.currentQuestionSpec?.draggables.map(
+        (dName: string) =>
+          `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`
+      );
+    }
+
+    if (this.currentQuestionSpec?.options) {
+      this.options = this.currentQuestionSpec?.options.map(
         (dName: string) =>
           `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`
       );

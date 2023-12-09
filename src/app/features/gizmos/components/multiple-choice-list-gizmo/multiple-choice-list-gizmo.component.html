@@ -1,0 +1,11 @@
+<mat-radio-group
+  aria-label="Select an option"
+  class="example-radio-group"
+  [(ngModel)]="selection"
+>
+  <ng-container *ngFor="let option of options">
+    <mat-radio-button class="example-radio-button" value="option"
+      ><img class="drop-img" [src]="option"
+    /></mat-radio-button>
+  </ng-container>
+</mat-radio-group>

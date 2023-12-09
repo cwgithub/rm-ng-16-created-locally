@@ -77,6 +77,7 @@ export class AssessmentService {
       gizmo: original?.gizmo,
       draggables: original.draggables ? [...original.draggables] : undefined,
       droppable: original?.droppable,
+      options: original.options ? [...original.options] : undefined,
     };
 
 

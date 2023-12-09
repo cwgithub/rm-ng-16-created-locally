@@ -1,4 +1,5 @@
 {
+  "sectionName": "Rhythm",
   "questions": [
     {
       "questionNumber": 1,
@@ -26,7 +27,7 @@
       "gizmo": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/3/options/2-4.png",
-        "assets/assessments/grade1/rhythm/questions/3/options/4-4.png",
+        "assets/assessments/grade1/rhythm/questions/3/options/3-4.png",
         "assets/assessments/grade1/rhythm/questions/3/options/c.png"
       ]
     },

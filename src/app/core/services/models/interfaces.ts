@@ -7,6 +7,7 @@ export interface AssessmentSpec {
 export interface SectionSpec {
   sectionNumber: number;
   sectionFile: string;
+  sectionName: string;
   questions: QuestionSpec[];
 }
 
@@ -17,4 +18,5 @@ export interface QuestionSpec {
   gizmo?: string;
   draggables?: string[];
   droppable?: string;
+  options?: string[];
 }

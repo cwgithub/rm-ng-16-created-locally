@@ -18,24 +18,36 @@
       Load Section 1
     </button>
 
-    <button type="button" mat-button (click)="previousQuestion()">
-      Previous
-    </button>
+    <ng-container *ngIf="currentSectionSpec">
+      <button type="button" mat-button (click)="previousQuestion()">
+        Previous
+      </button>
 
-    <button type="button" mat-button (click)="nextQuestion()">Next</button>
+      <button type="button" mat-button (click)="nextQuestion()">Next</button>
+    </ng-container>
   </div>
 
-  <div>{{ currentQuestionNumber }}</div>
+  <ng-container *ngIf="currentSectionSpec">
+    <div class="question-number">
+      Question {{ currentQuestionNumber }}, Section
+      {{ currentSectionSpec?.sectionName }}
+    </div>
 
-  <div [innerHTML]="html"></div>
+    <div [innerHTML]="html"></div>
 
-  <ng-container *ngIf="currentQuestionSpec?.gizmo">
-    <container-element [ngSwitch]="currentQuestionSpec?.gizmo">
-      <app-drag-and-drop-gizmo
-        *ngSwitchCase="'drag-and-drop'"
-        [dragImages]="currentQuestionSpec?.draggables"
-        [dropImage]="currentQuestionSpec?.droppable"
-      ></app-drag-and-drop-gizmo>
-    </container-element>
+    <ng-container *ngIf="currentQuestionSpec?.gizmo">
+      <container-element [ngSwitch]="currentQuestionSpec?.gizmo">
+        <app-drag-and-drop-gizmo
+          *ngSwitchCase="'drag-and-drop'"
+          [dragImages]="currentQuestionSpec?.draggables"
+          [dropImage]="currentQuestionSpec?.droppable"
+        ></app-drag-and-drop-gizmo>
+
+        <app-multiple-choice-list-gizmo
+          *ngSwitchCase="'multiple-choice-list'"
+          [options]="currentQuestionSpec?.options"
+        ></app-multiple-choice-list-gizmo>
+      </container-element>
+    </ng-container>
   </ng-container>
 </div>
