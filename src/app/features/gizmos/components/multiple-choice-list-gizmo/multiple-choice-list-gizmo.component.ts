@@ -21,19 +21,17 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
   constructor(private _answerService: AnswerService) {}
 
   @Input() options?: string[];
-
-  @Output() answerEvent = new EventEmitter<any>();
+  @Input() answerData?: any;
 
   selection?: string;
 
-  ngAfterViewInit(): void { }
+  @Output() answerEvent = new EventEmitter<any>();
+
+  ngAfterViewInit(): void {}
 
   answer() {
     const testAnswer = {
-      gizmo: 'drag-and-drop',
-      data: {
-        foo: 'bar',
-      },
+      selection: this.selection,
     };
 
     this.answerEvent.emit(testAnswer);

@@ -39,6 +39,9 @@ export class AssessmentContainerComponent implements OnInit {
   draggables?: string[] = [];
   options?: string[] = [];
 
+  // data loaded from the AnswerService for this question
+  answerData?: any;
+
   constructor(
     private _assessmentService: AssessmentService,
     private _answerService: AnswerService
@@ -83,6 +86,8 @@ export class AssessmentContainerComponent implements OnInit {
       SectionSpec,
       questionNumber
     );
+
+    this.answerData = this.answerLoad();
   }
 
   nextQuestion() {
@@ -167,6 +172,22 @@ export class AssessmentContainerComponent implements OnInit {
         this.currentSectionSpec?.sectionName,
         this.currentQuestionSpec?.questionNumber,
         answerData
+      );
+    }
+  }
+
+  answerLoad(): any {
+    if (
+      this.userId &&
+      this.currentAssessmentSpec?.assessmentId &&
+      this.currentSectionSpec?.sectionName &&
+      this.currentQuestionSpec?.questionNumber
+    ) {
+      return this._answerService.getAnswer(
+        this.userId,
+        this.currentAssessmentSpec?.assessmentId,
+        this.currentSectionSpec?.sectionName,
+        this.currentQuestionSpec?.questionNumber
       );
     }
   }

@@ -49,8 +49,7 @@ export class AnswerService {
     userId: string,
     assessmentId: string,
     sectionName: string,
-    questionNumber: number,
-    answerData: any
+    questionNumber: number
   ): any {
     const key = this.createCacheKey(
       userId,
@@ -59,6 +58,8 @@ export class AnswerService {
       questionNumber
     );
 
-    this._cache.get(key);
+    if (key) {
+      return this._cache.get(key);
+    }
   }
 }

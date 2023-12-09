@@ -28,6 +28,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
+  @Input() answerData?: any;
 
   @Output() answerEvent = new EventEmitter<any>();
 
@@ -184,10 +185,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
   answer() {
     const testAnswer = {
-      gizmo: 'drag-and-drop',
-      data: {
-        foo: 'bar',
-      },
+      foo: 'bar',
     };
 
     this.answerEvent.emit(testAnswer);

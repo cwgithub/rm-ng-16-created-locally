@@ -42,12 +42,14 @@
           [dragImages]="currentQuestionSpec?.draggables"
           [dropImage]="currentQuestionSpec?.droppable"
           (answerEvent)="onAnswerEvent($event)"
+          [answerData]="answerData"
         ></app-drag-and-drop-gizmo>
 
         <app-multiple-choice-list-gizmo
           *ngSwitchCase="'multiple-choice-list'"
           [options]="currentQuestionSpec?.options"
           (answerEvent)="onAnswerEvent($event)"
+          [answerData]="answerData"
         ></app-multiple-choice-list-gizmo>
       </container-element>
     </ng-container>
