@@ -27,7 +27,11 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
 
   @Output() answerEvent = new EventEmitter<any>();
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    if (this.answerData) {
+      this.selection = this.answerData.selection;
+    }
+  }
 
   answer() {
     const testAnswer = {

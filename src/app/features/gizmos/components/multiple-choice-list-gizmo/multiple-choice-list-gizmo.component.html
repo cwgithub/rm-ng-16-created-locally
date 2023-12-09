@@ -4,7 +4,9 @@
   [(ngModel)]="selection"
 >
   <ng-container *ngFor="let option of options">
-    <mat-radio-button class="example-radio-button" [value]="option"
+    <mat-radio-button
+      class="example-radio-button"
+      [value]="option"
       ><img class="drop-img" [src]="option"
     /></mat-radio-button>
   </ng-container>
