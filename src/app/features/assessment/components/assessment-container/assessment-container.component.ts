@@ -97,7 +97,7 @@ export class AssessmentContainerComponent implements OnInit {
 
     if (
       this.currentQuestionNumber <
-      this.currentSectionSpec.questions.length - 1
+      this.currentSectionSpec.questions.length
     ) {
       this.currentQuestionNumber++;
     }
