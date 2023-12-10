@@ -28,6 +28,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
+
   @Input() answerData?: any;
 
   @Output() answerEvent = new EventEmitter<any>();
@@ -55,6 +56,8 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setUp();
+
+    this.positionDraggables();
   }
 
   setUp() {
@@ -137,6 +140,8 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
         // display the draggable element
         this.draggableElement.classList.remove('hide');
       }
+
+      this.storeCurrentDraggable();
     }, 0);
   }
 
@@ -144,7 +149,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   // Events on the buttons ...
   // ==========================================================================
 
-  positionClick() {
+  positionDraggables() {
     const storedCache = localStorage.getItem(`${this.gizmoInstance}-cache`);
     if (storedCache) {
       this._cache = JSON.parse(storedCache);
@@ -165,7 +170,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     // - set the Left and Top string values from the _cache entries
   }
 
-  storeClick() {
+  storeCurrentDraggable() {
     if (this.draggableElement) {
       // Store the position (l
       const leftPosition = parseInt(
@@ -184,10 +189,21 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   }
 
   answer() {
-    const testAnswer = {
-      foo: 'bar',
-    };
+    if (this.draggableElement) {
+      // Store the position (l
+      const leftPosition = parseInt(
+        this.draggableElement.style.left || '0',
+        10
+      );
+      const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
-    this.answerEvent.emit(testAnswer);
+      const testAnswer = {
+        draggable: `${this.gizmoInstance}-cache`,
+        leftPosition: leftPosition,
+        topPosition: topPosition,
+      };
+
+      this.answerEvent.emit(testAnswer);
+    }
   }
 }
