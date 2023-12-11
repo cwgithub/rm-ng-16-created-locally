@@ -27,23 +27,25 @@ export class MultiMultiGizmoComponent implements AfterViewInit, OnChanges {
   @Input() answerData?: any;
 
   keys?: string[];
-  selection?: string;
+  selections: { [id: string]: string | undefined } = {};
 
   @Output() answerEvent = new EventEmitter<any>();
 
   ngAfterViewInit(): void {
     if (this.answerData) {
-      this.selection = this.answerData.selection;
+      this.selections = this.answerData.selections;
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.keys = Object.keys(this.optionsData);
+
+    this.keys.forEach((key: string) => (this.selections[key] = undefined));
   }
 
   answer() {
     const testAnswer = {
-      selection: this.selection,
+      selections: this.selections,
     };
 
     this.answerEvent.emit(testAnswer);
