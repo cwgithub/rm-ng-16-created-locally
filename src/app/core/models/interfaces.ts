@@ -20,4 +20,5 @@ export interface QuestionSpec {
   draggables?: string[];
   droppable?: string;
   options?: string[];
+  optionsDataFile?: string;
 }

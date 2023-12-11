@@ -51,6 +51,14 @@
           (answerEvent)="onAnswerEvent($event)"
           [answerData]="answerData"
         ></app-multiple-choice-list-gizmo>
+
+        <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
+        <app-multi-multi-gizmo
+          *ngSwitchCase="'multi-multi'"
+          [optionsData]="optionsData"
+          (answerEvent)="onAnswerEvent($event)"
+          [answerData]="answerData"
+        ></app-multi-multi-gizmo>
       </container-element>
     </ng-container>
   </ng-container>

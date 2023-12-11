@@ -11,6 +11,7 @@ import {
 import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
 import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/components/multiple-choice-list-gizmo/multiple-choice-list-gizmo.component';
 import { AnswerService } from 'src/app/core/services/answer.service';
+import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/multi-multi-gizmo/multi-multi-gizmo.component';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { AnswerService } from 'src/app/core/services/answer.service';
     NgSwitch,
     DragAndDropGizmoComponent,
     MultipleChoiceListGizmoComponent,
+    MultiMultiGizmoComponent,
   ],
   templateUrl: './assessment-container.component.html',
   styleUrls: ['./assessment-container.component.scss'],
@@ -36,8 +38,9 @@ export class AssessmentContainerComponent implements OnInit {
   showFiller = false;
   html?: string;
   currentQuestionNumber = 1;
-  draggables?: string[] = [];
-  options?: string[] = [];
+  draggables: string[] = [];
+  options: string[] = [];
+  optionsData: {} = {};
 
   // data loaded from the AnswerService for this question
   answerData?: any;
@@ -95,10 +98,7 @@ export class AssessmentContainerComponent implements OnInit {
       throw new Error('No active section found when trying to get a question.');
     }
 
-    if (
-      this.currentQuestionNumber <
-      this.currentSectionSpec.questions.length
-    ) {
+    if (this.currentQuestionNumber < this.currentSectionSpec.questions.length) {
       this.currentQuestionNumber++;
     }
 
@@ -148,15 +148,32 @@ export class AssessmentContainerComponent implements OnInit {
       );
     }
 
+    if (this.currentQuestionSpec?.optionsDataFile) {
+      this._assessmentService
+        .loadJsonFile(this.currentQuestionSpec?.optionsDataFile)
+        .subscribe((data: any) => {
+          console.log(data);
+          this.optionsData = data;
+        });
+    }
+
     this.html = undefined;
 
     if (this.currentQuestionSpec) {
       this._assessmentService
-        .loadFile(this.currentQuestionSpec.questionHtmlFile)
+        .loadTextFile(this.currentQuestionSpec.questionHtmlFile)
         .subscribe((html: any) => {
           this.html = html;
         });
     }
+  }
+
+  loadJsonFile(filePath?: string): any {
+    if (filePath) {
+      return this._assessmentService.loadJsonFile(filePath);
+    }
+
+    return {};
   }
 
   onAnswerEvent(answerData: any) {

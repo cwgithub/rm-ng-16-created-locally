@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AssessmentSpec, QuestionSpec, SectionSpec } from '../models/interfaces';
+import {
+  AssessmentSpec,
+  QuestionSpec,
+  SectionSpec,
+} from '../models/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +37,7 @@ export class AssessmentService {
     }
 
     const sectionSpec = assessmentSpec.sections.find(
-      (sectionSpec: SectionSpec) => (sectionSpec.sectionNumber === sectionNumber)
+      (sectionSpec: SectionSpec) => sectionSpec.sectionNumber === sectionNumber
     );
 
     if (!sectionSpec) {
@@ -54,7 +58,7 @@ export class AssessmentService {
 
     const questionSpec = sectionSpec.questions.find(
       (questionSpec: QuestionSpec) =>
-        (questionSpec.questionNumber === questionNumber)
+        questionSpec.questionNumber === questionNumber
     );
 
     if (!questionSpec) {
@@ -65,8 +69,12 @@ export class AssessmentService {
     return this.cloneQuestionSpec(questionSpec);
   }
 
-  loadFile(fileName: string) {
+  loadTextFile(fileName: string) {
     return this._httpClient.get(fileName, { responseType: 'text' });
+  }
+
+  loadJsonFile(fileName: string) {
+    return this._httpClient.get(fileName);
   }
 
   private cloneQuestionSpec(original: QuestionSpec): QuestionSpec {
@@ -78,10 +86,8 @@ export class AssessmentService {
       draggables: original.draggables ? [...original.draggables] : undefined,
       droppable: original?.droppable,
       options: original.options ? [...original.options] : undefined,
+      optionsDataFile: original.optionsDataFile,
     };
-
-
-
 
     return clone;
   }
