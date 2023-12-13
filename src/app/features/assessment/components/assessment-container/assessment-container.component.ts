@@ -148,14 +148,18 @@ export class AssessmentContainerComponent implements OnInit {
       );
     }
 
-    if (this.currentQuestionSpec?.optionsDataFile) {
-      this._assessmentService
-        .loadJsonFile(this.currentQuestionSpec?.optionsDataFile)
-        .subscribe((data: any) => {
-          console.log(data);
-          this.optionsData = data;
-        });
+    if (this.currentQuestionSpec?.optionsData) {
+      this.optionsData = this.currentQuestionSpec?.optionsData;
     }
+
+    // if (this.currentQuestionSpec?.optionsDataFile) {
+    //   this._assessmentService
+    //     .loadJsonFile(this.currentQuestionSpec?.optionsDataFile)
+    //     .subscribe((data: any) => {
+    //       console.log(data);
+    //       this.optionsData = data;
+    //     });
+    // }
 
     this.html = undefined;
 

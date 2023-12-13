@@ -21,4 +21,5 @@ export interface QuestionSpec {
   droppable?: string;
   options?: string[];
   optionsDataFile?: string;
+  optionsData: any;
 }

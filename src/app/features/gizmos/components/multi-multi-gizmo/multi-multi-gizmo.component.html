@@ -2,10 +2,10 @@
   <ng-container *ngFor="let key of keys">
     <mat-form-field>
       <mat-label>{{ key }}</mat-label>
-      <mat-select  [(ngModel)]="selections[key]">
-        <mat-option *ngFor="let option of optionsData[key]" [value]="option">{{
-          option
-        }}</mat-option>
+      <mat-select  [(value)]="selections[key]">
+        <ng-container *ngFor="let option of optionsData[key]">
+          <mat-option [value]="option">{{ option }}</mat-option>
+        </ng-container>
       </mat-select>
     </mat-form-field>
   </ng-container>

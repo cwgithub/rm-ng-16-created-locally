@@ -87,6 +87,7 @@ export class AssessmentService {
       droppable: original?.droppable,
       options: original.options ? [...original.options] : undefined,
       optionsDataFile: original.optionsDataFile,
+      optionsData: original.optionsData,
     };
 
     return clone;

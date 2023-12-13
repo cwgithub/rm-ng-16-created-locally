@@ -1,16 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
-import { AnswerService } from 'src/app/core/services/answer.service';
+import { FormsModule, UntypedFormBuilder } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
@@ -20,27 +11,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './multi-multi-gizmo.component.html',
   styleUrls: ['./multi-multi-gizmo.component.scss'],
 })
-export class MultiMultiGizmoComponent implements AfterViewInit, OnChanges {
-  constructor(private _answerService: AnswerService) {}
+export class MultiMultiGizmoComponent implements OnInit {
+  constructor() {}
 
   @Input() optionsData?: any;
   @Input() answerData?: any;
 
+  @Output() answerEvent = new EventEmitter<any>();
+
   keys?: string[];
   selections: { [id: string]: string | undefined } = {};
 
-  @Output() answerEvent = new EventEmitter<any>();
-
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    if (this.optionsData) {
+      this.keys = Object.keys(this.optionsData);
+    }
     if (this.answerData) {
       this.selections = this.answerData.selections;
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.keys = Object.keys(this.optionsData);
-
-    this.keys.forEach((key: string) => (this.selections[key] = undefined));
   }
 
   answer() {

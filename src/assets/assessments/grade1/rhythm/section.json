@@ -114,7 +114,12 @@
       "questionNumber": 12,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/12/q.html",
       "gizmo": "multi-multi",
-      "optionsDataFile": "assets/assessments/grade1/rhythm/questions/12/options/multi-multi.json"
+      "optionsDataFile": "assets/assessments/grade1/rhythm/questions/12/options/multi-multi.json",
+      "optionsData": {
+        "X": ["Correct", "Incorrect"],
+        "Y": ["Correct", "Incorrect"],
+        "Z": ["Correct", "Incorrect"]
+      }
     },
     {
       "questionNumber": 13,
