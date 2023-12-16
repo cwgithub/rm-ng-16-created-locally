@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "rm-ng-16-created-locally:build:production"
+              "buildTarget": "rm-ng-16-created-locally:build:production"
             },
             "development": {
-              "browserTarget": "rm-ng-16-created-locally:build:development"
+              "buildTarget": "rm-ng-16-created-locally:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rm-ng-16-created-locally:build"
+            "buildTarget": "rm-ng-16-created-locally:build"
           }
         },
         "test": {
