@@ -1,14 +1,15 @@
 <div class="container">
   <div class="drag-palette">
-    <img
-      #draggableElements
-      *ngFor="let dragImage of dragImages"
-      #draggableElement
-      class="draggable"
-      draggable="true"
-      [attr.data-image]="dragImage"
-      [src]="dragImage"
-    />
+    @for (dragImage of dragImages; track dragImage) {
+      <img
+        #draggableElements
+        #draggableElement
+        class="draggable"
+        draggable="true"
+        [attr.data-image]="dragImage"
+        [src]="dragImage"
+        />
+    }
   </div>
 
   <div #droppableElement class="droppable">

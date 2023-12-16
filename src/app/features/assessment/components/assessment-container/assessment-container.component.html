@@ -1,15 +1,15 @@
 <!--  <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-  </mat-drawer>
+<mat-drawer #drawer class="example-sidenav" mode="side">
+  <p>Auto-resizing sidenav</p>
+</mat-drawer>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
+<div class="example-sidenav-content">
+  <button type="button" mat-button (click)="drawer.toggle()">
+    Toggle sidenav
+  </button>
 
-    <app-assessment></app-assessment>
-  </div>
+  <app-assessment></app-assessment>
+</div>
 </mat-drawer-container> -->
 
 <div class="container">
@@ -18,48 +18,48 @@
       Load Section 1
     </button>
 
-    <ng-container *ngIf="currentSectionSpec">
+    @if (currentSectionSpec) {
       <button type="button" mat-button (click)="previousQuestion()">
         Previous
       </button>
-
       <button type="button" mat-button (click)="nextQuestion()">Next</button>
-    </ng-container>
+    }
   </div>
 
-  <ng-container *ngIf="currentSectionSpec">
+  @if (currentSectionSpec) {
     <div class="question-number">
       Question {{ currentQuestionNumber }}, Section
       {{ currentSectionSpec.sectionName }}
     </div>
-
     <div [innerHTML]="html"></div>
+    @if (currentQuestionSpec?.gizmo) {
 
-    <ng-container *ngIf="currentQuestionSpec?.gizmo">
-      <container-element [ngSwitch]="currentQuestionSpec?.gizmo">
-        <app-drag-and-drop-gizmo
-          *ngSwitchCase="'drag-and-drop'"
-          [dragImages]="currentQuestionSpec?.draggables"
-          [dropImage]="currentQuestionSpec?.droppable"
-          (answerEvent)="onAnswerEvent($event)"
-          [answerData]="answerData"
-        ></app-drag-and-drop-gizmo>
+        @switch (currentQuestionSpec?.gizmo) {
+          @case ('drag-and-drop') {
+            <app-drag-and-drop-gizmo
+              [dragImages]="currentQuestionSpec?.draggables"
+              [dropImage]="currentQuestionSpec?.droppable"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-drag-and-drop-gizmo>
+          }
+          @case ('multiple-choice-list') {
+            <app-multiple-choice-list-gizmo
+              [options]="currentQuestionSpec?.options"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-multiple-choice-list-gizmo>
+          }
+          <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
+          @case ('multi-multi') {
+            <app-multi-multi-gizmo
+              [optionsData]="optionsData"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-multi-multi-gizmo>
+          }
+        }
 
-        <app-multiple-choice-list-gizmo
-          *ngSwitchCase="'multiple-choice-list'"
-          [options]="currentQuestionSpec?.options"
-          (answerEvent)="onAnswerEvent($event)"
-          [answerData]="answerData"
-        ></app-multiple-choice-list-gizmo>
-
-        <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
-        <app-multi-multi-gizmo
-          *ngSwitchCase="'multi-multi'"
-          [optionsData]="optionsData"
-          (answerEvent)="onAnswerEvent($event)"
-          [answerData]="answerData"
-        ></app-multi-multi-gizmo>
-      </container-element>
-    </ng-container>
-  </ng-container>
+    }
+  }
 </div>

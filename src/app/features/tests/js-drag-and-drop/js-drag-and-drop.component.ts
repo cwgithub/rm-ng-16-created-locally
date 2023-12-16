@@ -1,10 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-js-drag-and-drop',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './js-drag-and-drop.component.html',
   styleUrls: ['./js-drag-and-drop.component.scss'],
 })

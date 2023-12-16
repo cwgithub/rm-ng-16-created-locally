@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgIf, NgSwitch } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AssessmentService } from '../../../../core/services/assessment.service';
@@ -16,15 +16,12 @@ import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/mul
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
     MatSidenavModule,
     MatButtonModule,
-    NgIf,
-    NgSwitch,
     DragAndDropGizmoComponent,
     MultipleChoiceListGizmoComponent,
-    MultiMultiGizmoComponent,
-  ],
+    MultiMultiGizmoComponent
+],
   templateUrl: './assessment-container.component.html',
   styleUrls: ['./assessment-container.component.scss'],
 })

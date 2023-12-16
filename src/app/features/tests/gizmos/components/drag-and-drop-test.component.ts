@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { JsDragAndDropComponent } from '../../js-drag-and-drop/js-drag-and-drop.component';
 import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/drag-and-drop-gizmo/drag-and-drop-gizmo.component';
 
@@ -7,7 +7,7 @@ import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/dr
 @Component({
   selector: 'app-drag-and-dro-test',
   standalone: true,
-  imports: [CommonModule, JsDragAndDropComponent, DragAndDropGizmoComponent],
+  imports: [JsDragAndDropComponent, DragAndDropGizmoComponent],
   templateUrl: './drag-and-drop-test.component.html',
   styleUrls: ['./drag-and-drop-test.component.scss'],
 })

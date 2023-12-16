@@ -1,14 +1,14 @@
 <div class="container">
-  <ng-container *ngFor="let key of keys">
+  @for (key of keys; track key) {
     <mat-form-field>
       <mat-label>{{ key }}</mat-label>
       <mat-select  [(value)]="selections[key]">
-        <ng-container *ngFor="let option of optionsData[key]">
+        @for (option of optionsData[key]; track option) {
           <mat-option [value]="option">{{ option }}</mat-option>
-        </ng-container>
+        }
       </mat-select>
     </mat-form-field>
-  </ng-container>
+  }
 </div>
 
 <div>

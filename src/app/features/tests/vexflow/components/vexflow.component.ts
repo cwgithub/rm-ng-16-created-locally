@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import * as vexflow from 'vexflow';
 import { Vex } from 'vexflow';
 import { Factory } from 'vexflow';
@@ -15,7 +15,7 @@ import { Beam } from 'vexflow';
 @Component({
   selector: 'app-vexflow',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './vexflow.component.html',
   styleUrls: ['./vexflow.component.scss'],
 })

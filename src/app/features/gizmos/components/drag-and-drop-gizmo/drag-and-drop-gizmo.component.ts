@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { AnswerService } from 'src/app/core/services/answer.service';
 
 interface cacheEntry {
@@ -20,7 +20,7 @@ interface cacheEntry {
 @Component({
   selector: 'app-drag-and-drop-gizmo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './drag-and-drop-gizmo.component.html',
   styleUrls: ['./drag-and-drop-gizmo.component.scss'],
 })
