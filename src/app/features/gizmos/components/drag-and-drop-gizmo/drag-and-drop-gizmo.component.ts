@@ -55,12 +55,20 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   constructor(private _answerService: AnswerService) {}
 
   ngAfterViewInit(): void {
-    this.setUp();
+    this.initialiseDisplay();
+
+    if (this.answerData) {
+      // add to cache
+      this._cache[this.answerData.draggable] = {
+        left: this.answerData.leftPosition,
+        top: this.answerData.topPosition,
+      };
+    }
 
     this.positionDraggables();
   }
 
-  setUp() {
+  initialiseDisplay() {
     if (this.draggableComponentRefs) {
       this.draggableComponentRefs.forEach((elemRef: ElementRef) => {
         const elem = elemRef.nativeElement as HTMLElement;
@@ -110,7 +118,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
       const data = this.draggableElement.getAttribute('data-image');
 
-      console.log(`x ${x}, y ${y}`)
+      console.log(`x ${x}, y ${y}`);
 
       if (data) {
         this._cache[data] = {
@@ -128,6 +136,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   allowDrop(e: any) {
     e.preventDefault();
   }
+
   drop(e: any) {
     e.target.classList.remove('drag-over');
 
@@ -143,7 +152,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
         this.draggableElement.classList.remove('hide');
       }
 
-      this.storeCurrentDraggable();
+      // this.storeCurrentDraggable();
     }, 0);
   }
 
@@ -152,10 +161,10 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   // ==========================================================================
 
   positionDraggables() {
-    const storedCache = localStorage.getItem(`${this.gizmoInstance}-cache`);
-    if (storedCache) {
-      this._cache = JSON.parse(storedCache);
-    }
+    // const storedCache = localStorage.getItem(`${this.gizmoInstance}-cache`);
+    // if (storedCache) {
+    //   this._cache = JSON.parse(storedCache);
+    // }
 
     // - loop over the _cache
     Object.keys(this._cache).forEach((key: string) => {
@@ -181,10 +190,10 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
-      localStorage.setItem(
-        `${this.gizmoInstance}-cache`,
-        JSON.stringify(this._cache, null, 2)
-      );
+      // localStorage.setItem(
+      //   `${this.gizmoInstance}-cache`,
+      //   JSON.stringify(this._cache, null, 2)
+      // );
 
       console.log(`Position: left ${leftPosition}, top ${topPosition}`);
     }
@@ -199,8 +208,9 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
+
       const testAnswer = {
-        draggable: `${this.gizmoInstance}-cache`,
+        draggable: this.draggableElement.getAttribute('data-image'),
         leftPosition: leftPosition,
         topPosition: topPosition,
       };
