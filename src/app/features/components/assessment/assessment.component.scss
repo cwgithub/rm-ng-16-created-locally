@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  align-items: stretch;
+  height: 80%;
+
+  &.buttons {
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.footer {
+    background-color: orange;
+    height: 50px;
+    width: 100%;
+  }
+}
+
+.question-number {
+  font-size: xx-large;
+  border: 1px solid black;
+  background-color: lightgrey;
+}

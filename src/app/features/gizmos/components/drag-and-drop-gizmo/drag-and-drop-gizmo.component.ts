@@ -110,6 +110,8 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
       const data = this.draggableElement.getAttribute('data-image');
 
+      console.log(`x ${x}, y ${y}`)
+
       if (data) {
         this._cache[data] = {
           left: x,

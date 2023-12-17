@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AssessmentService } from '../../../../core/services/assessment.service';
+import { AssessmentService } from '../../../core/services/assessment.service';
 import {
   AssessmentSpec,
   QuestionSpec,
@@ -12,20 +11,22 @@ import { DragAndDropGizmoComponent } from 'src/app/features/gizmos/components/dr
 import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/components/multiple-choice-list-gizmo/multiple-choice-list-gizmo.component';
 import { AnswerService } from 'src/app/core/services/answer.service';
 import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/multi-multi-gizmo/multi-multi-gizmo.component';
+import { QuestionNavComponent } from 'src/app/features/components/question-nav/question-nav.component';
 
 @Component({
   standalone: true,
+  templateUrl: './assessment.component.html',
+  styleUrls: ['./assessment.component.scss'],
   imports: [
     MatSidenavModule,
     MatButtonModule,
     DragAndDropGizmoComponent,
     MultipleChoiceListGizmoComponent,
-    MultiMultiGizmoComponent
-],
-  templateUrl: './assessment-container.component.html',
-  styleUrls: ['./assessment-container.component.scss'],
+    MultiMultiGizmoComponent,
+    QuestionNavComponent,
+  ],
 })
-export class AssessmentContainerComponent implements OnInit {
+export class AssessmentComponent implements OnInit {
   userId = 'cbw';
 
   currentAssessmentSpec?: AssessmentSpec;
@@ -112,6 +113,10 @@ export class AssessmentContainerComponent implements OnInit {
     }
 
     this.temp();
+  }
+
+  finishTest() {
+    alert('Do all the marking!');
   }
 
   private temp() {
@@ -208,5 +213,11 @@ export class AssessmentContainerComponent implements OnInit {
         this.currentQuestionSpec?.questionNumber
       );
     }
+  }
+
+  onQuestionNavQuestionClicked(questionNumber: number) {
+    this.currentQuestionNumber = questionNumber;
+
+    this.temp();
   }
 }

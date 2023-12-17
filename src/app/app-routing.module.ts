@@ -8,11 +8,11 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'assessment-container',
+    path: 'assessment',
     loadComponent: () =>
       import(
-        './features/assessment/components/assessment-container/assessment-container.component'
-      ).then((m) => m.AssessmentContainerComponent),
+        './features/components/assessment/assessment.component'
+      ).then((m) => m.AssessmentComponent),
   },
   {
     path: 'vexflow',
@@ -36,7 +36,7 @@ const routes: Routes = [
       ).then((m) => m.DragAndDropTestComponent),
   },
 
-  { path: '', redirectTo: '/assessment-container', pathMatch: 'full' },
+  { path: '', redirectTo: '/assessment', pathMatch: 'full' },
 ];
 
 @NgModule({
