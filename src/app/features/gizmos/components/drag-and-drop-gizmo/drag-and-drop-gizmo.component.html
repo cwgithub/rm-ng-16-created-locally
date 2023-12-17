@@ -1,14 +1,14 @@
 <div class="container">
   <div class="drag-palette">
     @for (dragImage of dragImages; track dragImage) {
-      <img
-        #draggableElements
-        #draggableElement
-        class="draggable"
-        draggable="true"
-        [attr.data-image]="dragImage"
-        [src]="dragImage"
-        />
+    <img
+      #draggableElements
+      #draggableElement
+      class="draggable"
+      draggable="true"
+      [attr.data-image]="dragImage"
+      [src]="dragImage"
+    />
     }
   </div>
 
@@ -20,7 +20,7 @@
 </div>
 
 <div>
-  <h5>{{ gizmoInstance }}</h5>
-
-  <button type="button" mat-button (click)="answer()">Answer</button>
+  <button type="button" mat-raised-button color="primary" (click)="answer()">
+    Answer
+  </button>
 </div>

@@ -9,11 +9,12 @@ import {
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { AnswerService } from 'src/app/core/services/answer.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-multiple-choice-list-gizmo',
   standalone: true,
-  imports: [FormsModule, MatRadioModule],
+  imports: [FormsModule, MatRadioModule, MatButtonModule],
   templateUrl: './multiple-choice-list-gizmo.component.html',
   styleUrls: ['./multiple-choice-list-gizmo.component.scss'],
 })

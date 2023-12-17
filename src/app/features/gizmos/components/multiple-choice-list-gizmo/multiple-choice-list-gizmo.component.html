@@ -2,14 +2,14 @@
   aria-label="Select an option"
   class="example-radio-group"
   [(ngModel)]="selection"
-  >
+>
   @for (option of options; track option) {
-    <mat-radio-button
-      class="example-radio-button"
-      [value]="option"
-      ><img class="drop-img" [src]="option"
-    /></mat-radio-button>
+  <mat-radio-button class="example-radio-button" [value]="option"
+    ><img class="drop-img" [src]="option"
+  /></mat-radio-button>
   }
 </mat-radio-group>
 
-<button type="button" mat-button (click)="answer()">Answer</button>
+<button type="button" mat-raised-button color="primary" (click)="answer()">
+  Answer
+</button>

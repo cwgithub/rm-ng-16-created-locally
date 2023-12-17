@@ -27,42 +27,44 @@
     }
   </div>
 
-  @if (currentSectionSpec) {
-  <div class="question-number">
-    Question {{ currentQuestionNumber }}, Section
-    {{ currentSectionSpec.sectionName }}
+  <div class="question-container">
+    @if (currentSectionSpec) {
+    <div class="question-number">
+      Question {{ currentQuestionNumber }}, Section
+      {{ currentSectionSpec.sectionName }}
+    </div>
+    <div [innerHTML]="html"></div>
+    @if (currentQuestionSpec?.gizmo) { @switch (currentQuestionSpec?.gizmo) {
+    @case ('drag-and-drop') {
+    <app-drag-and-drop-gizmo
+      [dragImages]="currentQuestionSpec?.draggables"
+      [dropImage]="currentQuestionSpec?.droppable"
+      (answerEvent)="onAnswerEvent($event)"
+      [answerData]="answerData"
+    ></app-drag-and-drop-gizmo>
+    } @case ('multiple-choice-list') {
+    <app-multiple-choice-list-gizmo
+      [options]="currentQuestionSpec?.options"
+      (answerEvent)="onAnswerEvent($event)"
+      [answerData]="answerData"
+    ></app-multiple-choice-list-gizmo>
+    }
+    <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
+    @case ('multi-multi') {
+    <app-multi-multi-gizmo
+      [optionsData]="optionsData"
+      (answerEvent)="onAnswerEvent($event)"
+      [answerData]="answerData"
+    ></app-multi-multi-gizmo>
+    } } } }
   </div>
-  <div [innerHTML]="html"></div>
-  @if (currentQuestionSpec?.gizmo) { @switch (currentQuestionSpec?.gizmo) {
-  @case ('drag-and-drop') {
-  <app-drag-and-drop-gizmo
-    [dragImages]="currentQuestionSpec?.draggables"
-    [dropImage]="currentQuestionSpec?.droppable"
-    (answerEvent)="onAnswerEvent($event)"
-    [answerData]="answerData"
-  ></app-drag-and-drop-gizmo>
-  } @case ('multiple-choice-list') {
-  <app-multiple-choice-list-gizmo
-    [options]="currentQuestionSpec?.options"
-    (answerEvent)="onAnswerEvent($event)"
-    [answerData]="answerData"
-  ></app-multiple-choice-list-gizmo>
-  }
-  <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
-  @case ('multi-multi') {
-  <app-multi-multi-gizmo
-    [optionsData]="optionsData"
-    (answerEvent)="onAnswerEvent($event)"
-    [answerData]="answerData"
-  ></app-multi-multi-gizmo>
-  } } } }
+</div>
 
-  <div class="footer">
-    <app-question-nav
-      [userId]="userId"
-      [assessmentId]="currentAssessmentSpec?.assessmentId"
-      [sectionSpec]="currentSectionSpec"
-      (questionClickEvent)="onQuestionNavQuestionClicked($event)"
-    ></app-question-nav>
-  </div>
+<div class="footer">
+  <app-question-nav
+    [userId]="userId"
+    [assessmentId]="currentAssessmentSpec?.assessmentId"
+    [sectionSpec]="currentSectionSpec"
+    (questionClickEvent)="onQuestionNavQuestionClicked($event)"
+  ></app-question-nav>
 </div>

@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { AnswerService } from 'src/app/core/services/answer.service';
+import { MatButtonModule } from '@angular/material/button';
 
 interface cacheEntry {
   left: number;
@@ -20,7 +21,7 @@ interface cacheEntry {
 @Component({
   selector: 'app-drag-and-drop-gizmo',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './drag-and-drop-gizmo.component.html',
   styleUrls: ['./drag-and-drop-gizmo.component.scss'],
 })
@@ -207,7 +208,6 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
         10
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
-
 
       const testAnswer = {
         draggable: this.draggableElement.getAttribute('data-image'),

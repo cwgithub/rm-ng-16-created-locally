@@ -1,16 +1,18 @@
 <div class="container">
   @for (key of keys; track key) {
-    <mat-form-field>
-      <mat-label>{{ key }}</mat-label>
-      <mat-select  [(value)]="selections[key]">
-        @for (option of optionsData[key]; track option) {
-          <mat-option [value]="option">{{ option }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ key }}</mat-label>
+    <mat-select [(value)]="selections[key]">
+      @for (option of optionsData[key]; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
   }
 </div>
 
 <div>
-  <button type="button" mat-button (click)="answer()">Answer</button>
+  <button type="button" mat-raised-button color="primary" (click)="answer()">
+    Answer
+  </button>
 </div>
