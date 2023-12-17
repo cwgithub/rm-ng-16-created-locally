@@ -29,13 +29,13 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
-
   @Input() answerData?: any;
 
   @Output() answerEvent = new EventEmitter<any>();
 
   @ViewChildren('draggableElements')
   draggableComponentRefs?: QueryList<ElementRef>;
+
   @ViewChild('droppableElement', { static: true }) droppableElementRef:
     | ElementRef
     | undefined;
@@ -117,7 +117,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       this.draggableElement.style.left = x + 'px';
       this.draggableElement.style.top = y + 'px';
 
-      const data = this.draggableElement.getAttribute('data-image');
+      const data = this.getImageName(this.draggableElement);
 
       console.log(`x ${x}, y ${y}`);
 
@@ -170,7 +170,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     // - loop over the _cache
     Object.keys(this._cache).forEach((key: string) => {
       const draggableElem = this.draggableElements?.find(
-        (elem: HTMLElement) => elem.getAttribute('data-image') === key
+        (elem: HTMLElement) => this.getImageName(elem) === key
       );
       if (draggableElem) {
         draggableElem.style.left = this._cache[key].left + 'px';
@@ -210,12 +210,33 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
       const testAnswer = {
-        draggable: this.draggableElement.getAttribute('data-image'),
+        draggable: this.getImageName(this.draggableElement),
         leftPosition: leftPosition,
         topPosition: topPosition,
       };
 
       this.answerEvent.emit(testAnswer);
     }
+  }
+
+  getImageName(elem: HTMLElement): string | null {
+    if (!elem) {
+      return null;
+    }
+
+    const filePath = elem.getAttribute('data-image');
+    return this.extractImageBase(filePath);
+  }
+
+  extractImageBase(filePath: string | null): string {
+    const parts = filePath?.split(`/`);
+
+    if (!parts) {
+      throw new Error(
+        `Trouble extracting image file name from path: ${filePath}`
+      );
+    }
+
+    return parts[parts?.length - 1];
   }
 }
