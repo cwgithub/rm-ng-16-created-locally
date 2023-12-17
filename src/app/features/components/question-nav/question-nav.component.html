@@ -1,6 +1,10 @@
 
 <div class="container">
   @for (question of sectionSpec?.questions; track question.questionNumber) {
-  <button mat-stroked-button  (click)="questionClickEvent.emit(question.questionNumber)"  >{{ question.questionNumber }}</button>
+  <button class="assesssment-button" mat-stroked-button  (click)="questionClickEvent.emit(question.questionNumber)"
+
+   [class.answered] = "isAnswered(question.questionNumber)"
+
+  >{{ question.questionNumber }}</button>
   }
 </div>

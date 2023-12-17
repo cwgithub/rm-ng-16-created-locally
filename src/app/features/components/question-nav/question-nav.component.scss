@@ -2,3 +2,15 @@
   display: inline-flex;
   flex-direction: row;
 }
+
+.assesssment-button {
+  background-color: yellow;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+
+  &.answered {
+    background-color: navy;
+    color: white;
+  }
+}

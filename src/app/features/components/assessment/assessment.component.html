@@ -58,8 +58,11 @@
   } } } }
 
   <div class="footer">
-
-    <app-question-nav [sectionSpec]="currentSectionSpec" (questionClickEvent)="onQuestionNavQuestionClicked($event)"></app-question-nav>
-
+    <app-question-nav
+      [userId]="userId"
+      [assessmentId]="currentAssessmentSpec?.assessmentId"
+      [sectionSpec]="currentSectionSpec"
+      (questionClickEvent)="onQuestionNavQuestionClicked($event)"
+    ></app-question-nav>
   </div>
 </div>
