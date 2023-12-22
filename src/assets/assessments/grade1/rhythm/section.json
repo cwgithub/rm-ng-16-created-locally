@@ -45,10 +45,10 @@
       "droppable": "assets/assessments/grade1/rhythm/questions/4/droppable.png",
       "answer": {
         "barline.png": {
-          "uppperLeft": 100,
-          "upperTop": 100,
-          "lowerLeft": 200,
-          "lowerTop": 200
+          "uppperLeft": 460,
+          "upperTop": 230,
+          "lowerLeft": 510,
+          "lowerTop": 240
         }
       }
     },
@@ -63,10 +63,10 @@
       "droppable": "assets/assessments/grade1/rhythm/questions/5/droppable.png",
       "answer": {
         "barline.png": {
-          "uppperLeft": 100,
-          "upperTop": 100,
-          "lowerLeft": 200,
-          "lowerTop": 200
+          "uppperLeft": 420,
+          "upperTop": 230,
+          "lowerLeft": 440,
+          "lowerTop": 240
         }
       }
     },
@@ -80,10 +80,10 @@
       "droppable": "assets/assessments/grade1/rhythm/questions/6/droppable.png",
       "answer": {
         "barline.png": {
-          "uppperLeft": 100,
-          "upperTop": 100,
-          "lowerLeft": 200,
-          "lowerTop": 200
+          "uppperLeft": 365,
+          "upperTop": 230,
+          "lowerLeft": 400,
+          "lowerTop": 240
         }
       }
     },
@@ -97,10 +97,10 @@
       "droppable": "assets/assessments/grade1/rhythm/questions/7/droppable.png",
       "answer": {
         "barline.png": {
-          "uppperLeft": 100,
-          "upperTop": 100,
-          "lowerLeft": 200,
-          "lowerTop": 200
+          "uppperLeft": 350,
+          "upperTop": 225,
+          "lowerLeft": 390,
+          "lowerTop": 235
         }
       }
     },
@@ -114,10 +114,10 @@
       "droppable": "assets/assessments/grade1/rhythm/questions/8/droppable.png",
       "answer": {
         "barline.png": {
-          "uppperLeft": 100,
-          "upperTop": 100,
-          "lowerLeft": 200,
-          "lowerTop": 200
+          "uppperLeft": 360,
+          "upperTop": 225,
+          "lowerLeft": 405,
+          "lowerTop": 235
         }
       }
     },
