@@ -12,6 +12,7 @@ import {
 
 import { AnswerService } from 'src/app/core/services/answer.service';
 import { MatButtonModule } from '@angular/material/button';
+import { GizmoType } from 'src/app/core/models/types';
 
 interface cacheEntry {
   left: number;
@@ -26,6 +27,8 @@ interface cacheEntry {
   styleUrls: ['./drag-and-drop-gizmo.component.scss'],
 })
 export class DragAndDropGizmoComponent implements AfterViewInit {
+  static readonly GizmoType: GizmoType = 'drag-and-drop';
+
   @Input() dragImages?: string[];
   @Input() dropImage?: string;
   @Input() gizmoInstance?: number;
@@ -200,25 +203,6 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     }
   }
 
-  answer() {
-    if (this.draggableElement) {
-      // Store the position (l
-      const leftPosition = parseInt(
-        this.draggableElement.style.left || '0',
-        10
-      );
-      const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
-
-      const testAnswer = {
-        draggable: this.getImageName(this.draggableElement),
-        leftPosition: leftPosition,
-        topPosition: topPosition,
-      };
-
-      this.answerEvent.emit(testAnswer);
-    }
-  }
-
   getImageName(elem: HTMLElement): string | null {
     if (!elem) {
       return null;
@@ -238,5 +222,25 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     }
 
     return parts[parts?.length - 1];
+  }
+
+  answer() {
+    if (this.draggableElement) {
+      // Store the position (l
+      const leftPosition = parseInt(
+        this.draggableElement.style.left || '0',
+        10
+      );
+      const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
+
+      const testAnswer = {
+        gizmoType: DragAndDropGizmoComponent.GizmoType,
+        draggable: this.getImageName(this.draggableElement),
+        leftPosition: leftPosition,
+        topPosition: topPosition,
+      };
+
+      this.answerEvent.emit(testAnswer);
+    }
   }
 }

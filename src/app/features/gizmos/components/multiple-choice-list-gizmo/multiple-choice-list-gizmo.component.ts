@@ -10,6 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { AnswerService } from 'src/app/core/services/answer.service';
 import { MatButtonModule } from '@angular/material/button';
+import { GizmoType } from 'src/app/core/models/types';
 
 @Component({
   selector: 'app-multiple-choice-list-gizmo',
@@ -19,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./multiple-choice-list-gizmo.component.scss'],
 })
 export class MultipleChoiceListGizmoComponent implements AfterViewInit {
+  static readonly GizmoType: GizmoType = 'multiple-choice-list';
+
   constructor(private _answerService: AnswerService) {}
 
   @Input() options?: string[];
@@ -36,6 +39,7 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
 
   answer() {
     const testAnswer = {
+      gizmoType: MultipleChoiceListGizmoComponent.GizmoType,
       selection: this.selection,
     };
 

@@ -4,6 +4,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { GizmoType } from '../../../../core/models/types';
 
 @Component({
   selector: 'app-multi-multi-gizmo',
@@ -13,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./multi-multi-gizmo.component.scss'],
 })
 export class MultiMultiGizmoComponent implements OnInit {
+  static readonly GizmoType: GizmoType = 'multi-multi';
+
   constructor() {}
 
   @Input() optionsData?: any;
@@ -34,6 +37,7 @@ export class MultiMultiGizmoComponent implements OnInit {
 
   answer() {
     const testAnswer = {
+      GizmoType: MultiMultiGizmoComponent.GizmoType,
       selections: this.selections,
     };
 

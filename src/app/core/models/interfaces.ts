@@ -1,3 +1,5 @@
+import { GizmoType } from "./types";
+
 export interface AssessmentSpec {
   assessmentId: string;
   grade: number;
@@ -16,7 +18,8 @@ export interface QuestionSpec {
   questionNumber: number;
   questionHtmlDir: string;
   questionHtmlFile: string;
-  gizmo?: string;
+  gizmoType?: GizmoType;
+  answer?: any;
   draggables?: string[];
   droppable?: string;
   options?: string[];

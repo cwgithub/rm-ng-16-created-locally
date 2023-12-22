@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GizmoType } from '../models/types';
 
 @Injectable({
   providedIn: 'root',
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class AnswerService {
   private _cache = new Map<string, any>();
   private _userId?: string;
+  private _correctMap = new Map<number, boolean>();
 
   constructor() {}
 
@@ -43,6 +45,48 @@ export class AnswerService {
     );
 
     this._cache.set(key, answerData);
+
+    // todo - this will move to the server side
+    const isCorrect = this.determineIsCorrect(
+      userId,
+      assessmentId,
+      sectionName,
+      questionNumber
+    );
+
+    this._correctMap.set(questionNumber, isCorrect);
+  }
+
+  isCorrect(questionNumber: number): boolean {
+    return this._correctMap.get(questionNumber) || false;
+  }
+
+  private determineIsCorrect(
+    userId: string,
+    assessmentId: string,
+    sectionName: string,
+    questionNumber: number
+  ): boolean {
+    const answer = this.getAnswer(
+      userId,
+      assessmentId,
+      sectionName,
+      questionNumber
+    );
+
+    switch (answer.gizmoType) {
+      case 'multiple-choice-list':
+        return true;
+
+      case 'drag-and-drop':
+        return true;
+
+      case 'multi-multi':
+        return true;
+
+      default:
+        throw new Error(`Unknown Gizmo type: "${answer.gizmoType}"`);
+    }
   }
 
   getAnswer(

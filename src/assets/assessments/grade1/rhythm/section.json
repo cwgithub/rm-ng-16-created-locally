@@ -4,7 +4,7 @@
     {
       "questionNumber": 1,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/1/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/1/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/1/options/3-4.png",
@@ -15,7 +15,7 @@
     {
       "questionNumber": 2,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/2/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/2/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/2/options/3-4.png",
@@ -26,7 +26,7 @@
     {
       "questionNumber": 3,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/3/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/3/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/3/options/3-4.png",
@@ -38,7 +38,7 @@
       "questionNumber": 4,
       "questionDir": "assets/assessments/grade1/rhythm/questions/4",
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/4/q.html",
-      "gizmo": "drag-and-drop",
+      "gizmoType": "drag-and-drop",
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/4/draggables/barline.png"
       ],
@@ -56,7 +56,7 @@
       "questionNumber": 5,
       "questionDir": "assets/assessments/grade1/rhythm/questions/5",
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/5/q.html",
-      "gizmo": "drag-and-drop",
+      "gizmoType": "drag-and-drop",
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/5/draggables/barline.png"
       ],
@@ -73,7 +73,7 @@
     {
       "questionNumber": 6,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/6/q.html",
-      "gizmo": "drag-and-drop",
+      "gizmoType": "drag-and-drop",
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/6/draggables/barline.png"
       ],
@@ -90,7 +90,7 @@
     {
       "questionNumber": 7,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/7/q.html",
-      "gizmo": "drag-and-drop",
+      "gizmoType": "drag-and-drop",
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/7/draggables/barline.png"
       ],
@@ -107,7 +107,7 @@
     {
       "questionNumber": 8,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/8/q.html",
-      "gizmo": "drag-and-drop",
+      "gizmoType": "drag-and-drop",
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/8/draggables/barline.png"
       ],
@@ -124,7 +124,7 @@
     {
       "questionNumber": 9,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/9/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/10/options/3.png",
         "assets/assessments/grade1/rhythm/questions/10/options/4.png",
@@ -136,7 +136,7 @@
     {
       "questionNumber": 10,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/10/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/10/options/2.png",
         "assets/assessments/grade1/rhythm/questions/10/options/3.png",
@@ -148,7 +148,7 @@
     {
       "questionNumber": 11,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/11/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/11/options/a.png",
         "assets/assessments/grade1/rhythm/questions/11/options/b.png",
@@ -159,7 +159,7 @@
     {
       "questionNumber": 12,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/12/q.html",
-      "gizmo": "multi-multi",
+      "gizmoType": "multi-multi",
       "optionsDataFile": "assets/assessments/grade1/rhythm/questions/12/options/multi-multi.json",
       "optionsData": {
         "X": ["Correct", "Incorrect"],
@@ -175,7 +175,7 @@
     {
       "questionNumber": 13,
       "questionHtmlFile": "assets/assessments/grade1/rhythm/questions/13/q.html",
-      "gizmo": "multiple-choice-list",
+      "gizmoType": "multiple-choice-list",
       "options": [
         "assets/assessments/grade1/rhythm/questions/13/options/a.png",
         "assets/assessments/grade1/rhythm/questions/13/options/b.png",

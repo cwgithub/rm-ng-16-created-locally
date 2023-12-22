@@ -34,8 +34,9 @@
       {{ currentSectionSpec.sectionName }}
     </div>
     <div [innerHTML]="html"></div>
-    @if (currentQuestionSpec?.gizmo) { @switch (currentQuestionSpec?.gizmo) {
-    @case ('drag-and-drop') {
+
+    @if (currentQuestionSpec?.gizmoType) { @switch
+    (currentQuestionSpec?.gizmoType) { @case ('drag-and-drop') {
     <app-drag-and-drop-gizmo
       [dragImages]="currentQuestionSpec?.draggables"
       [dropImage]="currentQuestionSpec?.droppable"
@@ -67,4 +68,6 @@
     [sectionSpec]="currentSectionSpec"
     (questionClickEvent)="onQuestionNavQuestionClicked($event)"
   ></app-question-nav>
+
+  {{ isCorrect(currentQuestionSpec?.questionNumber) }}
 </div>

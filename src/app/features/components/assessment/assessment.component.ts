@@ -154,15 +154,6 @@ export class AssessmentComponent implements OnInit {
       this.optionsData = this.currentQuestionSpec?.optionsData;
     }
 
-    // if (this.currentQuestionSpec?.optionsDataFile) {
-    //   this._assessmentService
-    //     .loadJsonFile(this.currentQuestionSpec?.optionsDataFile)
-    //     .subscribe((data: any) => {
-    //       console.log(data);
-    //       this.optionsData = data;
-    //     });
-    // }
-
     this.html = undefined;
 
     if (this.currentQuestionSpec) {
@@ -219,5 +210,15 @@ export class AssessmentComponent implements OnInit {
     this.currentQuestionNumber = questionNumber;
 
     this.temp();
+  }
+
+  isCorrect(questionNumber?: number): boolean {
+    if (questionNumber) {
+      return this._answerService.isCorrect(questionNumber);
+    }
+
+    return false;
+
+    // throw new Error('Could not detect the current question number.')
   }
 }
