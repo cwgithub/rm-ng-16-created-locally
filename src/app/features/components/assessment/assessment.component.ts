@@ -12,6 +12,7 @@ import { MultipleChoiceListGizmoComponent } from 'src/app/features/gizmos/compon
 import { AnswerService } from 'src/app/core/services/answer.service';
 import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/multi-multi-gizmo/multi-multi-gizmo.component';
 import { QuestionNavComponent } from 'src/app/features/components/question-nav/question-nav.component';
+import { MarkingService } from 'src/app/core/services/marking.service';
 
 @Component({
   standalone: true,
@@ -45,9 +46,10 @@ export class AssessmentComponent implements OnInit {
 
   constructor(
     private _assessmentService: AssessmentService,
-    private _answerService: AnswerService
+    private _answerService: AnswerService,
+    private _markingService: MarkingService
   ) {
-    this._answerService.getUserId(this.userId);
+    this._answerService.setUserId(this.userId);
   }
 
   ngOnInit(): void {
@@ -214,11 +216,17 @@ export class AssessmentComponent implements OnInit {
 
   isCorrect(questionNumber?: number): boolean {
     if (questionNumber) {
-      return this._answerService.isCorrect(questionNumber);
+      const userAnswer = this.answerLoad();
+
+      if (userAnswer) {
+        const isCorrect = this._markingService.determineIsCorrect(
+          this.currentQuestionNumber,
+          userAnswer
+        );
+        return isCorrect;
+      }
     }
 
     return false;
-
-    // throw new Error('Could not detect the current question number.')
   }
 }

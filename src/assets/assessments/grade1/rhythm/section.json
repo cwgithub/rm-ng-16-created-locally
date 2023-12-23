@@ -9,8 +9,7 @@
         "assets/assessments/grade1/rhythm/questions/1/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/1/options/3-4.png",
         "assets/assessments/grade1/rhythm/questions/1/options/4-4.png"
-      ],
-      "answer": "4-4.png"
+      ]
     },
     {
       "questionNumber": 2,
@@ -20,8 +19,7 @@
         "assets/assessments/grade1/rhythm/questions/2/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/2/options/3-4.png",
         "assets/assessments/grade1/rhythm/questions/2/options/4-4.png"
-      ],
-      "answer": "2-4.png"
+      ]
     },
     {
       "questionNumber": 3,
@@ -31,8 +29,7 @@
         "assets/assessments/grade1/rhythm/questions/3/options/2-4.png",
         "assets/assessments/grade1/rhythm/questions/3/options/3-4.png",
         "assets/assessments/grade1/rhythm/questions/3/options/c.png"
-      ],
-      "answer": "2-4.png"
+      ]
     },
     {
       "questionNumber": 4,
@@ -42,15 +39,7 @@
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/4/draggables/barline.png"
       ],
-      "droppable": "assets/assessments/grade1/rhythm/questions/4/droppable.png",
-      "answer": {
-        "barline.png": {
-          "uppperLeft": 460,
-          "upperTop": 230,
-          "lowerLeft": 510,
-          "lowerTop": 240
-        }
-      }
+      "droppable": "assets/assessments/grade1/rhythm/questions/4/droppable.png"
     },
     {
       "questionNumber": 5,
@@ -60,15 +49,7 @@
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/5/draggables/barline.png"
       ],
-      "droppable": "assets/assessments/grade1/rhythm/questions/5/droppable.png",
-      "answer": {
-        "barline.png": {
-          "uppperLeft": 420,
-          "upperTop": 230,
-          "lowerLeft": 440,
-          "lowerTop": 240
-        }
-      }
+      "droppable": "assets/assessments/grade1/rhythm/questions/5/droppable.png"
     },
     {
       "questionNumber": 6,
@@ -77,15 +58,7 @@
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/6/draggables/barline.png"
       ],
-      "droppable": "assets/assessments/grade1/rhythm/questions/6/droppable.png",
-      "answer": {
-        "barline.png": {
-          "uppperLeft": 365,
-          "upperTop": 230,
-          "lowerLeft": 400,
-          "lowerTop": 240
-        }
-      }
+      "droppable": "assets/assessments/grade1/rhythm/questions/6/droppable.png"
     },
     {
       "questionNumber": 7,
@@ -94,15 +67,7 @@
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/7/draggables/barline.png"
       ],
-      "droppable": "assets/assessments/grade1/rhythm/questions/7/droppable.png",
-      "answer": {
-        "barline.png": {
-          "uppperLeft": 350,
-          "upperTop": 225,
-          "lowerLeft": 390,
-          "lowerTop": 235
-        }
-      }
+      "droppable": "assets/assessments/grade1/rhythm/questions/7/droppable.png"
     },
     {
       "questionNumber": 8,
@@ -111,15 +76,7 @@
       "draggables": [
         "assets/assessments/grade1/rhythm/questions/8/draggables/barline.png"
       ],
-      "droppable": "assets/assessments/grade1/rhythm/questions/8/droppable.png",
-      "answer": {
-        "barline.png": {
-          "uppperLeft": 360,
-          "upperTop": 225,
-          "lowerLeft": 405,
-          "lowerTop": 235
-        }
-      }
+      "droppable": "assets/assessments/grade1/rhythm/questions/8/droppable.png"
     },
     {
       "questionNumber": 9,
@@ -130,8 +87,7 @@
         "assets/assessments/grade1/rhythm/questions/10/options/4.png",
         "assets/assessments/grade1/rhythm/questions/10/options/5.png",
         "assets/assessments/grade1/rhythm/questions/10/options/6.png"
-      ],
-      "answer": "6.png"
+      ]
     },
     {
       "questionNumber": 10,
@@ -142,8 +98,7 @@
         "assets/assessments/grade1/rhythm/questions/10/options/3.png",
         "assets/assessments/grade1/rhythm/questions/10/options/4.png",
         "assets/assessments/grade1/rhythm/questions/10/options/6.png"
-      ],
-      "answer": "4.png"
+      ]
     },
     {
       "questionNumber": 11,
@@ -153,8 +108,7 @@
         "assets/assessments/grade1/rhythm/questions/11/options/a.png",
         "assets/assessments/grade1/rhythm/questions/11/options/b.png",
         "assets/assessments/grade1/rhythm/questions/11/options/c.png"
-      ],
-      "answer": "a.png"
+      ]
     },
     {
       "questionNumber": 12,
@@ -165,11 +119,6 @@
         "X": ["Correct", "Incorrect"],
         "Y": ["Correct", "Incorrect"],
         "Z": ["Correct", "Incorrect"]
-      },
-      "answer": {
-        "X": "Incorrect",
-        "Y": "Correct",
-        "Z": "Correct"
       }
     },
     {
@@ -180,8 +129,7 @@
         "assets/assessments/grade1/rhythm/questions/13/options/a.png",
         "assets/assessments/grade1/rhythm/questions/13/options/b.png",
         "assets/assessments/grade1/rhythm/questions/13/options/c.png"
-      ],
-      "answer": "a.png"
+      ]
     }
   ]
 }

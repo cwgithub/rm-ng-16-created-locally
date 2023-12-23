@@ -38,11 +38,13 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
   }
 
   answer() {
-    const testAnswer = {
-      gizmoType: MultipleChoiceListGizmoComponent.GizmoType,
-      selection: this.selection,
-    };
+    if (this.selection) {
+      const testAnswer = {
+        gizmoType: MultipleChoiceListGizmoComponent.GizmoType,
+        selection: this.selection,
+      };
 
-    this.answerEvent.emit(testAnswer);
+      this.answerEvent.emit(testAnswer);
+    }
   }
 }

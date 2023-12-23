@@ -83,7 +83,6 @@ export class AssessmentService {
       questionHtmlDir: original.questionHtmlDir,
       questionHtmlFile: original.questionHtmlFile,
       gizmoType: original?.gizmoType,
-      answer: original?.answer,
       draggables: original.draggables ? [...original.draggables] : undefined,
       droppable: original?.droppable,
       options: original.options ? [...original.options] : undefined,

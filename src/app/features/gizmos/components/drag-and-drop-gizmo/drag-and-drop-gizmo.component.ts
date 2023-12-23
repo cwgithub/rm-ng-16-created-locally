@@ -235,9 +235,13 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
       const testAnswer = {
         gizmoType: DragAndDropGizmoComponent.GizmoType,
-        draggable: this.getImageName(this.draggableElement),
-        leftPosition: leftPosition,
-        topPosition: topPosition,
+        selection: [
+          {
+            draggable: this.getImageName(this.draggableElement),
+            leftPosition: leftPosition,
+            topPosition: topPosition,
+          },
+        ],
       };
 
       this.answerEvent.emit(testAnswer);

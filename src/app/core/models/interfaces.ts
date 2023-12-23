@@ -19,10 +19,23 @@ export interface QuestionSpec {
   questionHtmlDir: string;
   questionHtmlFile: string;
   gizmoType?: GizmoType;
-  answer?: any;
   draggables?: string[];
   droppable?: string;
   options?: string[];
   optionsDataFile?: string;
   optionsData: any;
+}
+
+export interface CorrectAnswersSpec {
+  sectionName: string;
+  answers: CorrectAnswer[];
+}
+
+export interface UserAnswer {
+  gizmoType: GizmoType;
+  selection: any;
+}
+
+export interface CorrectAnswer extends UserAnswer {
+  questionNumber: number;
 }
