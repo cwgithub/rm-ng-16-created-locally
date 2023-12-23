@@ -22,7 +22,7 @@
       "selection": [
         {
           "draggable": "barline.png",
-          "uppperLeft": 460,
+          "upperLeft": 460,
           "upperTop": 230,
           "lowerLeft": 510,
           "lowerTop": 240
@@ -35,7 +35,7 @@
       "selection": [
         {
           "draggable": "barline.png",
-          "uppperLeft": 420,
+          "upperLeft": 420,
           "upperTop": 230,
           "lowerLeft": 440,
           "lowerTop": 240
@@ -48,7 +48,7 @@
       "selection": [
         {
           "draggable": "barline.png",
-          "uppperLeft": 365,
+          "upperLeft": 365,
           "upperTop": 230,
           "lowerLeft": 400,
           "lowerTop": 240
@@ -61,7 +61,7 @@
       "selection": [
         {
           "draggable": "barline.png",
-          "uppperLeft": 350,
+          "upperLeft": 350,
           "upperTop": 225,
           "lowerLeft": 390,
           "lowerTop": 235
@@ -74,7 +74,7 @@
       "selection": [
         {
           "draggable": "barline.png",
-          "uppperLeft": 360,
+          "upperLeft": 360,
           "upperTop": 225,
           "lowerLeft": 405,
           "lowerTop": 235

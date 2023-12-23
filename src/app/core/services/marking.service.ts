@@ -47,26 +47,20 @@ export class MarkingService {
           );
 
         case 'drag-and-drop':
-          // "selection": {
-          //   "barline.png": {
-          //     "uppperLeft": 460,
-          //     "upperTop": 230,
-          //     "lowerLeft": 510,
-          //     "lowerTop": 240
-          //   }
-          // }
 
-          const userSelectKeys = Object.keys(userAnswer.selection);
-          const correctSelectKeys = Object.keys(correctAnswer.selection);
 
-          if (userSelectKeys.length !== correctSelectKeys.length) {
+          if (userAnswer.gizmoType !== correctAnswer.gizmoType) {
             return false;
           }
 
+          if (userAnswer.selection.length !== correctAnswer.selection.length) {
+            return false;
+          }
 
-
-
-          return true;
+          return this.isInRegion(
+            userAnswer.selection[0],
+            correctAnswer.selection[0]
+          );
 
         case 'multi-multi':
           return true;
@@ -77,5 +71,16 @@ export class MarkingService {
     }
 
     return false;
+  }
+
+  private isInRegion(userAnswer: any, correctAnswer: any): boolean {
+    const leftInRegion =
+      userAnswer.leftPosition >= correctAnswer.upperLeft &&
+      userAnswer.leftPosition <= correctAnswer.lowerLeft;
+    const rightInRegion =
+      userAnswer.topPosition >= correctAnswer.upperTop &&
+      userAnswer.topPosition <= correctAnswer.lowerTop;
+
+    return leftInRegion && rightInRegion;
   }
 }
