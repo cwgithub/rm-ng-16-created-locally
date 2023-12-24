@@ -59,6 +59,22 @@
     ></app-multi-multi-gizmo>
     } } } }
   </div>
+
+  @if(isCorrect(currentQuestionSpec?.questionNumber) === true) {
+  <mat-icon
+    class="icon-display"
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="done"
+  ></mat-icon>
+
+  } @else if(isCorrect(currentQuestionSpec?.questionNumber) === false ) {
+  <mat-icon
+    class="icon-display"
+    aria-label="Example home icon"
+    fontIcon="close"
+  ></mat-icon>
+  }
 </div>
 
 <div class="footer">
@@ -68,6 +84,4 @@
     [sectionSpec]="currentSectionSpec"
     (questionClickEvent)="onQuestionNavQuestionClicked($event)"
   ></app-question-nav>
-
-  {{ isCorrect(currentQuestionSpec?.questionNumber) }}
 </div>

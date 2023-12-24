@@ -47,8 +47,6 @@ export class MarkingService {
           );
 
         case 'drag-and-drop':
-
-
           if (userAnswer.gizmoType !== correctAnswer.gizmoType) {
             return false;
           }
@@ -63,7 +61,16 @@ export class MarkingService {
           );
 
         case 'multi-multi':
-          return true;
+          // "selection": {
+          //   "X": "Incorrect",
+          //   "Y": "Correct",
+          //   "Z": "Correct"
+          // }
+
+          const userString = this.stringify(userAnswer.selection);
+          const correctString = this.stringify(correctAnswer.selection);
+
+          return userString === correctString;
 
         default:
           throw new Error(`Unknown Gizmo type: "${correctAnswer.gizmoType}"`);
@@ -71,6 +78,14 @@ export class MarkingService {
     }
 
     return false;
+  }
+
+  private stringify(obj: any) {
+    let stringified = '';
+    Object.keys(obj)
+      .sort()
+      .forEach((key: string) => (stringified += `${key}::${obj[key]}`));
+    return stringified;
   }
 
   private isInRegion(userAnswer: any, correctAnswer: any): boolean {

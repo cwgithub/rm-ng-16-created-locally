@@ -24,21 +24,21 @@ export class MultiMultiGizmoComponent implements OnInit {
   @Output() answerEvent = new EventEmitter<any>();
 
   keys?: string[];
-  selections: { [id: string]: string | undefined } = {};
+  selection: { [id: string]: string | undefined } = {};
 
   ngOnInit(): void {
     if (this.optionsData) {
       this.keys = Object.keys(this.optionsData);
     }
     if (this.answerData) {
-      this.selections = this.answerData.selections;
+      this.selection = this.answerData.selection;
     }
   }
 
   answer() {
     const testAnswer = {
-      GizmoType: MultiMultiGizmoComponent.GizmoType,
-      selections: this.selections,
+      gizmoType: MultiMultiGizmoComponent.GizmoType,
+      selection: this.selection,
     };
 
     this.answerEvent.emit(testAnswer);

@@ -13,6 +13,7 @@ import {
 import { AnswerService } from 'src/app/core/services/answer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GizmoType } from 'src/app/core/models/types';
+import { UserAnswer } from '../../../../core/models/interfaces';
 
 interface cacheEntry {
   left: number;
@@ -62,11 +63,13 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     this.initialiseDisplay();
 
     if (this.answerData) {
-      // add to cache
-      this._cache[this.answerData.draggable] = {
-        left: this.answerData.leftPosition,
-        top: this.answerData.topPosition,
-      };
+      this.answerData.selection.forEach((userAnswer: any) => {
+        // add to cache
+        this._cache[userAnswer.draggable] = {
+          left: userAnswer.leftPosition,
+          top: userAnswer.topPosition,
+        };
+      });
     }
 
     this.positionDraggables();
@@ -209,7 +212,8 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     }
 
     const filePath = elem.getAttribute('data-image');
-    return this.extractImageBase(filePath);
+    // return this.extractImageBase(filePath);
+    return filePath;
   }
 
   extractImageBase(filePath: string | null): string {

@@ -2,7 +2,7 @@
   @for (key of keys; track key) {
   <mat-form-field>
     <mat-label>{{ key }}</mat-label>
-    <mat-select [(value)]="selections[key]">
+    <mat-select [(value)]="selection[key]">
       @for (option of optionsData[key]; track option) {
       <mat-option [value]="option">{{ option }}</mat-option>
       }

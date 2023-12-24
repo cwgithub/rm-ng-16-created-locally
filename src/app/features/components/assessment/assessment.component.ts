@@ -13,6 +13,7 @@ import { AnswerService } from 'src/app/core/services/answer.service';
 import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/multi-multi-gizmo/multi-multi-gizmo.component';
 import { QuestionNavComponent } from 'src/app/features/components/question-nav/question-nav.component';
 import { MarkingService } from 'src/app/core/services/marking.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { MarkingService } from 'src/app/core/services/marking.service';
     MultipleChoiceListGizmoComponent,
     MultiMultiGizmoComponent,
     QuestionNavComponent,
+    MatIconModule,
   ],
 })
 export class AssessmentComponent implements OnInit {
@@ -214,19 +216,18 @@ export class AssessmentComponent implements OnInit {
     this.temp();
   }
 
-  isCorrect(questionNumber?: number): boolean {
+  isCorrect(questionNumber?: number): boolean | undefined {
     if (questionNumber) {
       const userAnswer = this.answerLoad();
 
       if (userAnswer) {
-        const isCorrect = this._markingService.determineIsCorrect(
+        return this._markingService.determineIsCorrect(
           this.currentQuestionNumber,
           userAnswer
         );
-        return isCorrect;
       }
     }
 
-    return false;
+    return undefined;
   }
 }
