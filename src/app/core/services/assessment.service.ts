@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import {
   AssessmentSpec,
   QuestionSpec,
+  SectionFileRef,
   SectionSpec,
 } from '../models/interfaces';
 
@@ -11,16 +12,18 @@ import {
   providedIn: 'root',
 })
 export class AssessmentService {
+  // static readonly ServerUrl = 'https://theory-server.azurewebsites.net/api';
+  static readonly ServerUrl = 'http://localhost:8080/api';
+
   private _cache = new Map<string, AssessmentSpec>();
 
   constructor(private _httpClient: HttpClient) {}
 
-  loadAssessmentSpec(
-    shortName: string,
-    fullPath: string
-  ): Observable<AssessmentSpec> {
+  loadAssessmentSpec(shortName: string): Observable<AssessmentSpec> {
+    const url = `${AssessmentService.ServerUrl}/assessment/${shortName}`;
+
     return this._httpClient
-      .get<AssessmentSpec>(fullPath)
+      .get<AssessmentSpec>(url)
       .pipe(
         tap((assessmentSpec: AssessmentSpec) =>
           this._cache.set(shortName, assessmentSpec)
@@ -36,16 +39,19 @@ export class AssessmentService {
       throw new Error('Assessment not loaded');
     }
 
-    const sectionSpec = assessmentSpec.sections.find(
-      (sectionSpec: SectionSpec) => sectionSpec.sectionNumber === sectionNumber
+    const sectionFileRef = assessmentSpec.sectionsFileRefs.find(
+      (sectionSpec: SectionFileRef) =>
+        sectionSpec.sectionNumber === sectionNumber
     );
 
-    if (!sectionSpec) {
+    if (!sectionFileRef) {
       throw new Error('Section data not found');
     }
 
+    const url = `${AssessmentService.ServerUrl}/section/${assessmentSpec.assessmentName}/${sectionFileRef.sectionName}`;
+
     // load the section JSON data
-    return this._httpClient.get<SectionSpec>(sectionSpec?.sectionFile);
+    return this._httpClient.get<SectionSpec>(url);
   }
 
   getQuestionSpec(

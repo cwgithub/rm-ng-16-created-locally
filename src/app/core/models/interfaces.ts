@@ -3,13 +3,16 @@ import { GizmoType } from "./types";
 export interface AssessmentSpec {
   assessmentId: string;
   grade: number;
-  name: string;
-  sections: SectionSpec[];
+  assessmentName: string;
+  sectionsFileRefs: SectionFileRef[];
+}
+
+export interface SectionFileRef {
+  sectionNumber: number;
+  sectionName: string;
 }
 
 export interface SectionSpec {
-  sectionNumber: number;
-  sectionFile: string;
   sectionName: string;
   questions: QuestionSpec[];
 }

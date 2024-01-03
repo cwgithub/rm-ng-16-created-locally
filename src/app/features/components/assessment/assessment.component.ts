@@ -55,15 +55,12 @@ export class AssessmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadAssessmentSpec(
-      'Grade 1',
-      'assets/assessments/grade1/assessment.json'
-    );
+    this.loadAssessmentSpec('grade1');
   }
 
-  loadAssessmentSpec(shortName: string, fullPath: string) {
+  loadAssessmentSpec(shortName: string) {
     this._assessmentService
-      .loadAssessmentSpec(shortName, fullPath)
+      .loadAssessmentSpec(shortName)
       .subscribe(
         (assessmentSpec: AssessmentSpec) =>
           (this.currentAssessmentSpec = assessmentSpec)
