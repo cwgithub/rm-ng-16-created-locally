@@ -1,17 +1,3 @@
-<!--  <mat-drawer-container class="example-container" autosize>
-<mat-drawer #drawer class="example-sidenav" mode="side">
-  <p>Auto-resizing sidenav</p>
-</mat-drawer>
-
-<div class="example-sidenav-content">
-  <button type="button" mat-button (click)="drawer.toggle()">
-    Toggle sidenav
-  </button>
-
-  <app-assessment></app-assessment>
-</div>
-</mat-drawer-container> -->
-
 <div class="container">
   <div class="buttons">
     <button type="button" mat-button (click)="loadSectionSpec(1)">
@@ -19,61 +5,67 @@
     </button>
 
     @if (currentSectionSpec) {
-    <button type="button" mat-button (click)="previousQuestion()">
-      Previous
-    </button>
-    <button type="button" mat-button (click)="nextQuestion()">Next</button>
-    <button type="button" mat-button (click)="finishTest()">Finish Test</button>
+      <button type="button" mat-button (click)="previousQuestion()">
+        Previous
+      </button>
+      <button type="button" mat-button (click)="nextQuestion()">Next</button>
+      <button type="button" mat-button (click)="finishTest()">
+        Finish Test
+      </button>
     }
   </div>
 
   <div class="question-container">
     @if (currentSectionSpec) {
-    <div class="question-number">
-      Question {{ currentQuestionNumber }}, Section
-      {{ currentSectionSpec.sectionName }}
-    </div>
-    <div [innerHTML]="html"></div>
+      <div class="question-number">
+        Question {{ currentQuestionNumber }}, Section
+        {{ currentSectionSpec.sectionName }}
+      </div>
+      <div [innerHTML]="html"></div>
 
-    @if (currentQuestionSpec?.gizmoType) { @switch
-    (currentQuestionSpec?.gizmoType) { @case ('drag-and-drop') {
-    <app-drag-and-drop-gizmo
-      [dragImages]="currentQuestionSpec?.draggables"
-      [dropImage]="currentQuestionSpec?.droppable"
-      (answerEvent)="onAnswerEvent($event)"
-      [answerData]="answerData"
-    ></app-drag-and-drop-gizmo>
-    } @case ('multiple-choice-list') {
-    <app-multiple-choice-list-gizmo
-      [options]="currentQuestionSpec?.options"
-      (answerEvent)="onAnswerEvent($event)"
-      [answerData]="answerData"
-    ></app-multiple-choice-list-gizmo>
+      @if (currentQuestionSpec?.gizmoType) {
+        @switch (currentQuestionSpec?.gizmoType) {
+          @case ("drag-and-drop") {
+            <app-drag-and-drop-gizmo
+              [dragImages]="currentQuestionSpec?.draggables"
+              [dropImage]="currentQuestionSpec?.droppable"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-drag-and-drop-gizmo>
+          }
+          @case ("multiple-choice-list") {
+            <app-multiple-choice-list-gizmo
+              [options]="currentQuestionSpec?.options"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-multiple-choice-list-gizmo>
+          }
+          <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
+          @case ("multi-multi") {
+            <app-multi-multi-gizmo
+              [optionsData]="optionsData"
+              (answerEvent)="onAnswerEvent($event)"
+              [answerData]="answerData"
+            ></app-multi-multi-gizmo>
+          }
+        }
+      }
     }
-    <!-- [optionsData]="loadJsonFile(currentQuestionSpec?.optionsDataFile) | async" -->
-    @case ('multi-multi') {
-    <app-multi-multi-gizmo
-      [optionsData]="optionsData"
-      (answerEvent)="onAnswerEvent($event)"
-      [answerData]="answerData"
-    ></app-multi-multi-gizmo>
-    } } } }
   </div>
 
-  @if(isCorrect(currentQuestionSpec?.questionNumber) === true) {
-  <mat-icon
-    class="icon-display"
-    aria-hidden="false"
-    aria-label="Example home icon"
-    fontIcon="done"
-  ></mat-icon>
-
-  } @else if(isCorrect(currentQuestionSpec?.questionNumber) === false ) {
-  <mat-icon
-    class="icon-display"
-    aria-label="Example home icon"
-    fontIcon="close"
-  ></mat-icon>
+  @if (isCorrect(currentQuestionSpec?.questionNumber) === true) {
+    <mat-icon
+      class="icon-display"
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="done"
+    ></mat-icon>
+  } @else if (isCorrect(currentQuestionSpec?.questionNumber) === false) {
+    <mat-icon
+      class="icon-display"
+      aria-label="Example home icon"
+      fontIcon="close"
+    ></mat-icon>
   }
 </div>
 

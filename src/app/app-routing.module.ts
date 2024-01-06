@@ -10,9 +10,16 @@ const routes: Routes = [
   {
     path: 'assessment',
     loadComponent: () =>
-      import(
-        './features/components/assessment/assessment.component'
-      ).then((m) => m.AssessmentComponent),
+      import('./features/components/assessment/assessment.component').then(
+        (m) => m.AssessmentComponent
+      ),
+  },
+  {
+    path: 'tests',
+    loadComponent: () =>
+      import('./features/tests/test/components/tests.component').then(
+        (m) => m.TestsComponent
+      ),
   },
   {
     path: 'vexflow',

@@ -14,6 +14,7 @@ import { MultiMultiGizmoComponent } from 'src/app/features/gizmos/components/mul
 import { QuestionNavComponent } from 'src/app/features/components/question-nav/question-nav.component';
 import { MarkingService } from 'src/app/core/services/marking.service';
 import { MatIconModule } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   standalone: true,
@@ -37,7 +38,7 @@ export class AssessmentComponent implements OnInit {
   currentQuestionSpec?: QuestionSpec;
 
   showFiller = false;
-  html?: string;
+  html?: any;
   currentQuestionNumber = 1;
   draggables: string[] = [];
   options: string[] = [];
@@ -49,7 +50,8 @@ export class AssessmentComponent implements OnInit {
   constructor(
     private _assessmentService: AssessmentService,
     private _answerService: AnswerService,
-    private _markingService: MarkingService
+    private _markingService: MarkingService,
+    private _sanitized: DomSanitizer,
   ) {
     this._answerService.setUserId(this.userId);
   }
@@ -63,14 +65,14 @@ export class AssessmentComponent implements OnInit {
       .loadAssessmentSpec(shortName)
       .subscribe(
         (assessmentSpec: AssessmentSpec) =>
-          (this.currentAssessmentSpec = assessmentSpec)
+          (this.currentAssessmentSpec = assessmentSpec),
       );
   }
 
   loadSectionSpec(sectionNumber: number) {
     if (!this.currentAssessmentSpec) {
       throw new Error(
-        'No active assessment found when trying to get a section.'
+        'No active assessment found when trying to get a section.',
       );
     }
 
@@ -86,7 +88,7 @@ export class AssessmentComponent implements OnInit {
   getQuestionSpec(SectionSpec: SectionSpec, questionNumber: number) {
     this.currentQuestionSpec = this._assessmentService.getQuestionSpec(
       SectionSpec,
-      questionNumber
+      questionNumber,
     );
 
     this.answerData = this.answerLoad();
@@ -128,7 +130,7 @@ export class AssessmentComponent implements OnInit {
       // get the next questionSpec to be processed
       this.getQuestionSpec(
         this.currentSectionSpec as SectionSpec,
-        this.currentQuestionNumber
+        this.currentQuestionNumber,
       );
 
       // process it
@@ -140,14 +142,14 @@ export class AssessmentComponent implements OnInit {
     if (this.currentQuestionSpec?.draggables) {
       this.draggables = this.currentQuestionSpec?.draggables.map(
         (dName: string) =>
-          `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`
+          `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`,
       );
     }
 
     if (this.currentQuestionSpec?.options) {
       this.options = this.currentQuestionSpec?.options.map(
         (dName: string) =>
-          `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`
+          `${this.currentQuestionSpec?.questionHtmlDir}/${dName}`,
       );
     }
 
@@ -160,8 +162,14 @@ export class AssessmentComponent implements OnInit {
     if (this.currentQuestionSpec) {
       this._assessmentService
         .loadTextFile(this.currentQuestionSpec.questionHtmlFile)
-        .subscribe((html: any) => {
-          this.html = html;
+        .subscribe((html: string) => {
+          // todo - make this nicer!
+          const expandedHtml = html.replaceAll(
+            'assets/',
+            `${AssessmentService.ServerUrl}/assets/`,
+          );
+
+          this.html = this._sanitized.bypassSecurityTrustHtml(expandedHtml);
         });
     }
   }
@@ -186,7 +194,7 @@ export class AssessmentComponent implements OnInit {
         this.currentAssessmentSpec?.assessmentId,
         this.currentSectionSpec?.sectionName,
         this.currentQuestionSpec?.questionNumber,
-        answerData
+        answerData,
       );
     }
   }
@@ -202,7 +210,7 @@ export class AssessmentComponent implements OnInit {
         this.userId,
         this.currentAssessmentSpec?.assessmentId,
         this.currentSectionSpec?.sectionName,
-        this.currentQuestionSpec?.questionNumber
+        this.currentQuestionSpec?.questionNumber,
       );
     }
   }
@@ -220,7 +228,7 @@ export class AssessmentComponent implements OnInit {
       if (userAnswer) {
         return this._markingService.determineIsCorrect(
           this.currentQuestionNumber,
-          userAnswer
+          userAnswer,
         );
       }
     }

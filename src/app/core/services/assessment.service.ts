@@ -1,39 +1,43 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, map, switchMap, tap } from 'rxjs';
 import {
   AssessmentSpec,
   QuestionSpec,
   SectionFileRef,
   SectionSpec,
 } from '../models/interfaces';
+import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssessmentService {
-  // static readonly ServerUrl = 'https://theory-server.azurewebsites.net/api';
-  static readonly ServerUrl = 'http://localhost:8080/api';
+  static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
+  //  static readonly ServerUrl = 'http://localhost:8080/api';
 
   private _cache = new Map<string, AssessmentSpec>();
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(
+    private _httpClient: HttpClient,
+    private _sanitizer: DomSanitizer,
+  ) {}
 
   loadAssessmentSpec(shortName: string): Observable<AssessmentSpec> {
-    const url = `${AssessmentService.ServerUrl}/assessment/${shortName}`;
+    const url = `${AssessmentService.ServerUrl}/api/assessment/${shortName}`;
 
     return this._httpClient
       .get<AssessmentSpec>(url)
       .pipe(
         tap((assessmentSpec: AssessmentSpec) =>
-          this._cache.set(shortName, assessmentSpec)
-        )
+          this._cache.set(shortName, assessmentSpec),
+        ),
       );
   }
 
   loadSectionSpec(
     assessmentSpec: AssessmentSpec,
-    sectionNumber: number
+    sectionNumber: number,
   ): Observable<SectionSpec> {
     if (!assessmentSpec) {
       throw new Error('Assessment not loaded');
@@ -41,14 +45,14 @@ export class AssessmentService {
 
     const sectionFileRef = assessmentSpec.sectionsFileRefs.find(
       (sectionSpec: SectionFileRef) =>
-        sectionSpec.sectionNumber === sectionNumber
+        sectionSpec.sectionNumber === sectionNumber,
     );
 
     if (!sectionFileRef) {
       throw new Error('Section data not found');
     }
 
-    const url = `${AssessmentService.ServerUrl}/section/${assessmentSpec.assessmentName}/${sectionFileRef.sectionName}`;
+    const url = `${AssessmentService.ServerUrl}/api/section/${assessmentSpec.assessmentName}/${sectionFileRef.sectionName}`;
 
     // load the section JSON data
     return this._httpClient.get<SectionSpec>(url);
@@ -56,7 +60,7 @@ export class AssessmentService {
 
   getQuestionSpec(
     sectionSpec: SectionSpec,
-    questionNumber: number
+    questionNumber: number,
   ): QuestionSpec {
     if (!sectionSpec) {
       throw new Error('Section not loaded');
@@ -64,7 +68,7 @@ export class AssessmentService {
 
     const questionSpec = sectionSpec.questions.find(
       (questionSpec: QuestionSpec) =>
-        questionSpec.questionNumber === questionNumber
+        questionSpec.questionNumber === questionNumber,
     );
 
     if (!questionSpec) {
@@ -72,30 +76,18 @@ export class AssessmentService {
     }
 
     // load the section JSON data
-    return this.cloneQuestionSpec(questionSpec);
+    return questionSpec;
   }
 
-  loadTextFile(fileName: string) {
+  loadTextFile(fileName: string): Observable<string> {
     return this._httpClient.get(fileName, { responseType: 'text' });
   }
 
-  loadJsonFile(fileName: string) {
+  loadJsonFile(fileName: string): Observable<any> {
     return this._httpClient.get(fileName);
   }
 
-  private cloneQuestionSpec(original: QuestionSpec): QuestionSpec {
-    const clone: QuestionSpec = {
-      questionNumber: original.questionNumber,
-      questionHtmlDir: original.questionHtmlDir,
-      questionHtmlFile: original.questionHtmlFile,
-      gizmoType: original?.gizmoType,
-      draggables: original.draggables ? [...original.draggables] : undefined,
-      droppable: original?.droppable,
-      options: original.options ? [...original.options] : undefined,
-      optionsDataFile: original.optionsDataFile,
-      optionsData: original.optionsData,
-    };
-
-    return clone;
+  getServerBase(imagePath: string): string {
+    return `${AssessmentService.ServerUrl}/${imagePath}`;
   }
 }
