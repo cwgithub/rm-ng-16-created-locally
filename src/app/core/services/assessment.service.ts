@@ -13,14 +13,13 @@ import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class AssessmentService {
-  static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
-  //  static readonly ServerUrl = 'http://localhost:8080/api';
+ //static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
+    static readonly ServerUrl = 'http://localhost:8080';
 
   private _cache = new Map<string, AssessmentSpec>();
 
   constructor(
     private _httpClient: HttpClient,
-    private _sanitizer: DomSanitizer,
   ) {}
 
   loadAssessmentSpec(shortName: string): Observable<AssessmentSpec> {
