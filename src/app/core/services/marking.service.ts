@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { GizmoType } from '../models/types';
 import {
   CorrectAnswer,
   CorrectAnswersSpec,
@@ -26,9 +24,6 @@ export class MarkingService {
   loadAnswers(_shortName: string, fullPath: string) {
     this._assessmentService
       .loadJsonFile(this._assessmentService.getServerFileUrl(fullPath))
-
-      // return this._httpClient
-      //   .get<CorrectAnswersSpec>(fullPath)
       .subscribe((data: CorrectAnswersSpec) => {
         data.answers.forEach((answer: CorrectAnswer) => {
           this._cache.set(answer.questionNumber, answer);

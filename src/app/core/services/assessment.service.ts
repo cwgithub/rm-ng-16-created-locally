@@ -13,8 +13,8 @@ import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class AssessmentService {
- //static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
-    static readonly ServerUrl = 'http://localhost:8080';
+ static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
+    // static readonly ServerUrl = 'http://localhost:8080';
 
   private _cache = new Map<string, AssessmentSpec>();
 
