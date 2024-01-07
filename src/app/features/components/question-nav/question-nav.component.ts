@@ -13,9 +13,13 @@ export class QuestionNavComponent {
   @Input() userId?: string;
   @Input() assessmentId?: string;
   @Input() sectionSpec?: SectionSpec;
+  @Input() currentQuestionNumber?: number;
+
   @Output() questionClickEvent = new EventEmitter<number>();
 
   constructor(private _answerService: AnswerService) {}
+
+
 
   isAnswered(questionNumber: number): boolean {
     if (!this.userId) {
@@ -32,7 +36,7 @@ export class QuestionNavComponent {
       this.userId,
       this.assessmentId,
       this.sectionSpec?.sectionName,
-      questionNumber
+      questionNumber,
     );
 
     return userAnswer !== undefined;

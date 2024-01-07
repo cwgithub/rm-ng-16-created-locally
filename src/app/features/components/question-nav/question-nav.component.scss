@@ -9,8 +9,12 @@
   height: 2rem;
   margin: 0.2rem;
 
-  &.answered {
+  &.isAnswered {
     background-color: lightgray;
     color: black;
+  }
+
+  &.isCurrentQuestion {
+    border: 5px solid red;
   }
 }
