@@ -8,22 +8,21 @@ import {
   SectionSpec,
 } from '../models/interfaces';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
+import { ServerUtilsService } from './server-utils..service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssessmentService {
- static readonly ServerUrl = 'https://theoryserverts.azurewebsites.net';
-    // static readonly ServerUrl = 'http://localhost:8080';
-
   private _cache = new Map<string, AssessmentSpec>();
 
   constructor(
     private _httpClient: HttpClient,
+    private _serverUtilsService: ServerUtilsService,
   ) {}
 
   loadAssessmentSpec(shortName: string): Observable<AssessmentSpec> {
-    const url = `${AssessmentService.ServerUrl}/api/assessment/${shortName}`;
+    const url = `${ServerUtilsService.ServerUrl}/api/assessment/${shortName}`;
 
     return this._httpClient
       .get<AssessmentSpec>(url)
@@ -51,7 +50,7 @@ export class AssessmentService {
       throw new Error('Section data not found');
     }
 
-    const url = `${AssessmentService.ServerUrl}/api/section/${assessmentSpec.assessmentName}/${sectionFileRef.sectionName}`;
+    const url = `${ServerUtilsService.ServerUrl}/api/section/${assessmentSpec.assessmentName}/${sectionFileRef.sectionName}`;
 
     // load the section JSON data
     return this._httpClient.get<SectionSpec>(url);
@@ -76,17 +75,5 @@ export class AssessmentService {
 
     // load the section JSON data
     return questionSpec;
-  }
-
-  loadTextFile(fileName: string): Observable<string> {
-    return this._httpClient.get(fileName, { responseType: 'text' });
-  }
-
-  loadJsonFile(fileName: string): Observable<any> {
-    return this._httpClient.get(fileName);
-  }
-
-  getServerFileUrl(path: string): string {
-    return `${AssessmentService.ServerUrl}/${path}`;
   }
 }

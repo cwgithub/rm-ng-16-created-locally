@@ -15,6 +15,7 @@ import { QuestionNavComponent } from 'src/app/features/components/question-nav/q
 import { MarkingService } from 'src/app/core/services/marking.service';
 import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ServerUtilsService } from 'src/app/core/services/server-utils..service';
 
 @Component({
   standalone: true,
@@ -49,6 +50,7 @@ export class AssessmentComponent implements OnInit {
 
   constructor(
     private _assessmentService: AssessmentService,
+    private _serverUtilsService: ServerUtilsService,
     private _answerService: AnswerService,
     private _markingService: MarkingService,
     private _sanitized: DomSanitizer,
@@ -160,9 +162,9 @@ export class AssessmentComponent implements OnInit {
     this.html = undefined;
 
     if (this.currentQuestionSpec) {
-      this._assessmentService
+      this._serverUtilsService
         .loadTextFile(
-          this._assessmentService.getServerFileUrl(
+          this._serverUtilsService.getServerFileUrl(
             this.currentQuestionSpec.questionHtmlFile,
           ),
         )
@@ -170,7 +172,7 @@ export class AssessmentComponent implements OnInit {
           // todo - make this nicer!
           const expandedHtml = html.replaceAll(
             'assets/',
-            `${AssessmentService.ServerUrl}/assets/`,
+            `${ServerUtilsService.ServerUrl}/assets/`,
           );
 
           this.html = this._sanitized.bypassSecurityTrustHtml(expandedHtml);
@@ -180,7 +182,7 @@ export class AssessmentComponent implements OnInit {
 
   loadJsonFile(filePath?: string): any {
     if (filePath) {
-      return this._assessmentService.loadJsonFile(filePath);
+      return this._serverUtilsService.loadJsonFile(filePath);
     }
 
     return {};

@@ -8,11 +8,11 @@ import {
 
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
-import { AnswerService } from 'src/app/core/services/answer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GizmoType } from 'src/app/core/models/types';
 import { AssessmentService } from 'src/app/core/services/assessment.service';
 import { AsyncPipe } from '@angular/common';
+import { ServerUtilsService } from 'src/app/core/services/server-utils..service';
 
 @Component({
   selector: 'app-multiple-choice-list-gizmo',
@@ -24,7 +24,10 @@ import { AsyncPipe } from '@angular/common';
 export class MultipleChoiceListGizmoComponent implements AfterViewInit {
   static readonly GizmoType: GizmoType = 'multiple-choice-list';
 
-  constructor(private _assessmentService: AssessmentService) {}
+  constructor(
+    private _assessmentService: AssessmentService,
+    private _serverUtilsService: ServerUtilsService,
+  ) {}
 
   @Input() options?: string[];
   @Input() answerData?: any;
@@ -39,8 +42,8 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
     }
   }
 
-  getImageUrl(imagePath:string): string {
-    return this._assessmentService.getServerFileUrl(imagePath);
+  getImageUrl(imagePath: string): string {
+    return this._serverUtilsService.getServerFileUrl(imagePath);
   }
 
   answer() {

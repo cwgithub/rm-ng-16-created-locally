@@ -5,6 +5,7 @@ import {
   UserAnswer,
 } from '../models/interfaces';
 import { AssessmentService } from './assessment.service';
+import { ServerUtilsService } from './server-utils..service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class MarkingService {
 
   private _cache = new Map<number, CorrectAnswer>();
 
-  constructor(private _assessmentService: AssessmentService) {
+  constructor(private _serverUtilsService: ServerUtilsService) {
     this.loadAnswers(
       'Grade 1',
       'assets/assessments/grade1/rhythm/answers.json',
@@ -22,8 +23,8 @@ export class MarkingService {
   }
 
   loadAnswers(_shortName: string, fullPath: string) {
-    this._assessmentService
-      .loadJsonFile(this._assessmentService.getServerFileUrl(fullPath))
+    this._serverUtilsService
+      .loadJsonFile(this._serverUtilsService.getServerFileUrl(fullPath))
       .subscribe((data: CorrectAnswersSpec) => {
         data.answers.forEach((answer: CorrectAnswer) => {
           this._cache.set(answer.questionNumber, answer);

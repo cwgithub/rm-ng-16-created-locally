@@ -13,6 +13,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { GizmoType } from 'src/app/core/models/types';
 import { AssessmentService } from 'src/app/core/services/assessment.service';
+import { ServerUtilsService } from 'src/app/core/services/server-utils..service';
 
 interface cacheEntry {
   left: number;
@@ -56,7 +57,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   draggableElement?: HTMLElement;
   droppableElement?: HTMLElement;
 
-  constructor(private _assessmentService: AssessmentService) {}
+  constructor(private _serverUtilsService: ServerUtilsService) {}
 
   ngAfterViewInit(): void {
     this.initialiseDisplay();
@@ -253,7 +254,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
   getImageUrl(imagePath?: string): string {
     if (imagePath) {
-      return this._assessmentService.getServerFileUrl(imagePath);
+      return this._serverUtilsService.getServerFileUrl(imagePath);
     }
 
     throw new Error('Undefine Image file specified');
