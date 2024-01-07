@@ -10,10 +10,9 @@ import {
   ViewChildren,
 } from '@angular/core';
 
-import { AnswerService } from 'src/app/core/services/answer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GizmoType } from 'src/app/core/models/types';
-import { UserAnswer } from '../../../../core/models/interfaces';
+import { AssessmentService } from 'src/app/core/services/assessment.service';
 
 interface cacheEntry {
   left: number;
@@ -57,7 +56,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
   draggableElement?: HTMLElement;
   droppableElement?: HTMLElement;
 
-  constructor(private _answerService: AnswerService) {}
+  constructor(private _assessmentService: AssessmentService) {}
 
   ngAfterViewInit(): void {
     this.initialiseDisplay();
@@ -90,7 +89,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
         .nativeElement as HTMLElement;
       this.droppableElement.addEventListener(
         'dragover',
-        this.allowDrop.bind(this)
+        this.allowDrop.bind(this),
       );
       this.droppableElement.addEventListener('drop', this.drop.bind(this));
     }
@@ -176,7 +175,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
     // - loop over the _cache
     Object.keys(this._cache).forEach((key: string) => {
       const draggableElem = this.draggableElements?.find(
-        (elem: HTMLElement) => this.getImageName(elem) === key
+        (elem: HTMLElement) => this.getImageName(elem) === key,
       );
       if (draggableElem) {
         draggableElem.style.left = this._cache[key].left + 'px';
@@ -193,7 +192,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       // Store the position (l
       const leftPosition = parseInt(
         this.draggableElement.style.left || '0',
-        10
+        10,
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
@@ -221,7 +220,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
     if (!parts) {
       throw new Error(
-        `Trouble extracting image file name from path: ${filePath}`
+        `Trouble extracting image file name from path: ${filePath}`,
       );
     }
 
@@ -233,7 +232,7 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
       // Store the position (l
       const leftPosition = parseInt(
         this.draggableElement.style.left || '0',
-        10
+        10,
       );
       const topPosition = parseInt(this.draggableElement.style.top || '0', 10);
 
@@ -250,5 +249,13 @@ export class DragAndDropGizmoComponent implements AfterViewInit {
 
       this.answerEvent.emit(testAnswer);
     }
+  }
+
+  getImageUrl(imagePath?: string): string {
+    if (imagePath) {
+      return this._assessmentService.getServerFileUrl(imagePath);
+    }
+
+    throw new Error('Undefine Image file specified');
   }
 }

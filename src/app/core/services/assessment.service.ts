@@ -86,7 +86,7 @@ export class AssessmentService {
     return this._httpClient.get(fileName);
   }
 
-  getServerBase(imagePath: string): string {
-    return `${AssessmentService.ServerUrl}/${imagePath}`;
+  getServerFileUrl(path: string): string {
+    return `${AssessmentService.ServerUrl}/${path}`;
   }
 }

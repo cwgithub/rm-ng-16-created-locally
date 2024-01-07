@@ -6,6 +6,7 @@ import {
   CorrectAnswersSpec,
   UserAnswer,
 } from '../models/interfaces';
+import { AssessmentService } from './assessment.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,16 +16,19 @@ export class MarkingService {
 
   private _cache = new Map<number, CorrectAnswer>();
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _assessmentService: AssessmentService) {
     this.loadAnswers(
       'Grade 1',
-      'assets/assessments/grade1/rhythm/answers.json'
+      'assets/assessments/grade1/rhythm/answers.json',
     );
   }
 
   loadAnswers(_shortName: string, fullPath: string) {
-    return this._httpClient
-      .get<CorrectAnswersSpec>(fullPath)
+    this._assessmentService
+      .loadJsonFile(this._assessmentService.getServerFileUrl(fullPath))
+
+      // return this._httpClient
+      //   .get<CorrectAnswersSpec>(fullPath)
       .subscribe((data: CorrectAnswersSpec) => {
         data.answers.forEach((answer: CorrectAnswer) => {
           this._cache.set(answer.questionNumber, answer);
@@ -57,7 +61,7 @@ export class MarkingService {
 
           return this.isInRegion(
             userAnswer.selection[0],
-            correctAnswer.selection[0]
+            correctAnswer.selection[0],
           );
 
         case 'multi-multi':

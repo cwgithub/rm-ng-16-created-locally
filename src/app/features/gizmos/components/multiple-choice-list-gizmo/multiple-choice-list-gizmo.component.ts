@@ -40,7 +40,7 @@ export class MultipleChoiceListGizmoComponent implements AfterViewInit {
   }
 
   getImageUrl(imagePath:string): string {
-    return this._assessmentService.getServerBase(imagePath);
+    return this._assessmentService.getServerFileUrl(imagePath);
   }
 
   answer() {

@@ -7,14 +7,14 @@
       class="draggable"
       draggable="true"
       [attr.data-image]="extractImageBase(dragImage)"
-      [src]="dragImage"
+      [src]="getImageUrl(dragImage)"
     />
     }
   </div>
 
   <div #droppableElement class="droppable">
     <div>
-      <img class="drop-img" [src]="dropImage" />
+      <img class="drop-img" [src]="getImageUrl(dropImage)" />
     </div>
   </div>
 </div>

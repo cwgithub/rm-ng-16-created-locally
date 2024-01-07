@@ -161,7 +161,11 @@ export class AssessmentComponent implements OnInit {
 
     if (this.currentQuestionSpec) {
       this._assessmentService
-        .loadTextFile(this.currentQuestionSpec.questionHtmlFile)
+        .loadTextFile(
+          this._assessmentService.getServerFileUrl(
+            this.currentQuestionSpec.questionHtmlFile,
+          ),
+        )
         .subscribe((html: string) => {
           // todo - make this nicer!
           const expandedHtml = html.replaceAll(
